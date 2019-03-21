@@ -1,0 +1,207 @@
+@import "../../stylus/main.styl"
+
+a
+  color inherit
+  
+  text-decoration none
+  
+  &:hover
+    color inherit
+
+
+
+.AppContainer
+  position relative
+  
+  display flex
+  
+  flex-direction column
+  
+  width 100%
+  height 100%
+  
+  background-color #0f0f0f
+  
+  color #efefef
+  
+  font-family "Lazer84", sans-serif
+  font-size 14px
+  font-weight 400
+  
+  overflow-y auto
+
+.AppBody
+  display flex
+  
+  flex 1 0 auto
+  flex-direction row
+  
+  // h1
+  //   padding 16px 8px
+    
+  //   text-align center
+
+.AppMenu
+  display flex
+  
+  flex 0 0 auto
+  flex-direction column
+  
+  width 360px
+  
+  background-color #2f2f2f
+  
+  h2
+    text-align center
+
+.AppContent
+  display flex
+  
+  flex 1 1 auto
+  flex-direction column
+  
+.heading
+  position relative
+  
+  margin-bottom -64px
+
+  padding 0
+  
+  color #ef8f1f
+  
+  font-family "Mortal Kombat", sans-serif
+  font-size 128px
+  
+  letter-spacing 3px
+  
+  text-align center
+  
+  text-shadow 0 0 4px #0f0f0f, 0 0 4px #0f0f0f, 0 0 4px #0f0f0f, 0 0 4px #0f0f0f, 0 0 4px #0f0f0f, 0 0 4px #0f0f0f, 0 0 4px #0f0f0f, 0 0 4px #0f0f0f, 0 0 4px #0f0f0f, 0 0 4px #0f0f0f
+  
+  z-index 1
+
+
+
+// NavMenu
+.NavMenuContainer
+  display flex
+  
+  flex 1 1 auto
+  
+  flex-direction column
+  
+  padding 16px 8px
+  
+.NavMenu
+  display flex
+  
+  flex 1 1 auto
+  
+  flex-direction column
+
+.NavMenuItem
+  display flex
+  
+  flex-direction column
+
+  padding-top 8px
+  
+  &:first-child
+    padding-top 0
+  
+  .SubNavMenu &
+    padding-top 0
+    
+    height 0
+    
+    opacity 0
+    
+    overflow hidden
+    
+    transition height 0.3333s, opacity 0.3333s
+    
+  .open &
+    padding-top 4px
+    
+    height 52px
+    
+    opacity 1
+    
+.NavLink, .NavButton
+  display flex
+  
+  align-items center
+  justify-content center
+  
+  height 64px
+  
+  background-color #3f3f3f
+  
+  border-color #3f3f3f
+  border-style solid
+  border-width 4px 0
+  
+  font-size 24px
+  
+  cursor pointer
+  
+  .SubNavMenu &
+    height 48px
+    
+    background-color #1f1f1f
+    
+    border-color #1f1f1f
+    
+    font-size 16px
+  
+  &.active
+    color #ef8f1f
+    
+    border-bottom-color #ef8f1f
+
+.AppInnerWrap
+  display flex
+  
+  flex 1 0 auto
+  
+  flex-direction column
+
+  padding 48px
+  
+  align-items center
+  justify-content center
+
+.FeatureWrap
+  position relative
+  
+  width 100%
+  
+  border-width 4px 0
+  border-style solid
+  border-color #ef8f1f
+
+.Feature
+  display block
+  
+  width 100%
+
+.FeatureGradient
+  position absolute
+  
+  top 0
+  right 0
+  bottom 0
+  left 0
+  
+  background-image linear-gradient(to right, rgba(15, 15, 15, 1) 0%, rgba(15, 15, 15, 0) 25%, rgba(15, 15, 15, 0) 75%, rgba(15, 15, 15, 1) 100%)
+  
+.HomeButtons
+  display flex
+  
+  margin 8px -8px 0
+  
+  .NavButtonWrap
+    padding 8px
+
+  .NavButton
+    width 344px
