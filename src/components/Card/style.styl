@@ -1,0 +1,38 @@
+.CardWrap, .Card
+  position relative
+
+  display block
+
+  width 320px
+  height 500px
+
+.CardWrap
+  color #0f0f0f
+
+  filter drop-shadow(4px 4px 4px)
+
+.Card
+  transform-origin 50% 50% 1px
+  transition transform 0.5s
+
+  transform-style preserve-3d
+
+  // perspective 1000
+
+  cursor pointer
+
+  &.flip
+    transform rotateY(180deg)
+
+  .CardFace
+    position absolute
+    top 0
+    left 0
+
+    backface-visibility hidden
+
+    &:first-child
+      transform translateZ(0)
+
+    &:last-child
+      transform translateZ(2px) rotateY(180deg)

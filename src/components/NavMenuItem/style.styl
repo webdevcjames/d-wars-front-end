@@ -1,0 +1,27 @@
+.NavMenuItem
+  display flex
+  
+  flex-direction column
+
+  padding-top 8px
+  
+  &:first-child
+    padding-top 0
+  
+  .SubNavMenu &
+    padding-top 0
+    
+    height 0
+    
+    opacity 0
+    
+    overflow hidden
+    
+    transition height 0.3333s, opacity 0.3333s
+    
+  .open &
+    padding-top 4px
+    
+    height 52px
+    
+    opacity 1
