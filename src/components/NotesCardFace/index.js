@@ -3,6 +3,8 @@ import PropTypes from "prop-types"
 
 import CardFace from "../../components/CardFace"
 
+import "./style.styl"
+
 
 
 export const NotesCardFace = ({ name, notes, traits }) => (
@@ -47,6 +49,3 @@ NotesCardFace.propTypes = {
 
 
 export default NotesCardFace
-
-
-

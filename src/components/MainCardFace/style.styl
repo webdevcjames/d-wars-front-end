@@ -1,0 +1,108 @@
+.CardArt
+  position absolute
+  top 8px
+  right 8px
+  bottom 8px
+  left 8px
+
+  width 304px
+  height 484px
+
+  background-color #0f0f0f
+  background-position 50% 38px
+  background-size auto 240px
+  background-repeat no-repeat
+
+  border-radius 72px
+
+  overflow hidden
+
+.CardStatsContainer
+  position relative
+
+.CardStatsSeparators
+  position absolute
+
+  top 0
+  left 0
+
+  width 100%
+
+  .CardAttributes, .CardMove
+    margin 0 auto
+
+    width 240px
+
+    border-top 1px solid currentColor
+
+  .CardAttributes
+    height 53px
+
+  .CardMove
+    height 51px
+
+    &:last-child
+      width 224px
+
+.CardStats
+  position relative
+
+.CardAttributes, .CardMove
+  display flex
+
+  align-items center
+
+  padding 1px 16px 0
+
+  width 100%
+
+.CardClass
+  flex 0 0 auto 
+
+  width 36px
+  height 36px
+
+  background-color currentColor
+
+  border-radius 50%
+
+.CardAttributeSpacer, .CardMoveSpacer
+  flex 1 1 auto
+
+  padding 0 8px
+
+  width 100%
+  height 1px
+
+  background-clip content-box
+  background-color currentColor
+
+  opacity 0.3333
+
+.CardAttributes
+  height 53px
+
+  font-size 27px
+
+.CardMove
+  height 51px
+  
+  font-size 21px
+
+  &:nth-last-child(2)
+    padding 1px 28px 0
+  
+  &:last-child
+    padding 1px 40px 0
+
+.CardMoveName
+  flex 0 1 auto
+
+  span
+    display inline-block
+
+    white-space nowrap
+
+.CardMoveValue
+  flex 0 1 auto
+  

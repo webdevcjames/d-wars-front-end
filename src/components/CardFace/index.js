@@ -35,6 +35,3 @@ CardFace.propTypes = {
 
 
 export default CardFace
-
-
-

@@ -3,6 +3,8 @@ import PropTypes from "prop-types"
 
 import CardFace from "../../components/CardFace"
 
+import "./style.styl"
+
 
 
 export const MainCardFace = ({ art, name, stats, moves }) => (
@@ -58,6 +60,3 @@ MainCardFace.propTypes = {
 
 
 export default MainCardFace
-
-
-

@@ -3,6 +3,8 @@ import PropTypes from "prop-types"
 
 import CardFace from "../../components/CardFace"
 
+import "./style.styl"
+
 
 
 export const DFactorCardFace = ({ name, dFactor: { title, type, desc } }) => (
@@ -44,6 +46,3 @@ DFactorCardFace.propTypes = {
 
 
 export default DFactorCardFace
-
-
-

@@ -6,6 +6,8 @@ import Card from "../../components/Card"
 import MainCardFace from "../../components/MainCardFace"
 import NotesCardFace from "../../components/NotesCardFace"
 import DFactorCardFace from "../../components/DFactorCardFace"
+import TypesCardFace from "../../components/TypesCardFace"
+import PlaceholderCardFace from "../../components/PlaceholderCardFace"
 import NavLink from "../../components/NavLink"
 
 import "./style.styl"
@@ -74,12 +76,8 @@ export class Colosseum extends Container {
                   <DFactorCardFace key={index} name={kenshi.name} dFactor={dFactor} />)}
               </Card>
               <Card>
-                {/*
-                  <TypesCardFace {...kenshi} />
-                  <PlaceholderCardFace />
-                */}
-                <MainCardFace {...kenshi} />
-                <NotesCardFace {...kenshi} />
+                <TypesCardFace {...kenshi} />
+                <PlaceholderCardFace />
               </Card>
             </CardSet>
 
