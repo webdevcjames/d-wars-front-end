@@ -1,5 +1,4 @@
-import React from "react"
-import PropTypes from "prop-types"
+import * as React from "react"
 
 import CardFace from "../../components/CardFace"
 
@@ -7,7 +6,20 @@ import "./style.styl"
 
 
 
-export const NotesCardFace = ({ name, notes, traits }) => (
+interface Note {
+  name: string
+  desc: string
+}
+
+interface Props {
+  name:   string
+  notes:  Note[]
+  traits: string[]
+}
+
+
+
+export const NotesCardFace = ({ name, notes, traits }: Props): JSX.Element => (
   <CardFace type="Notes">
     <div className="CardFill" />
     
@@ -20,7 +32,7 @@ export const NotesCardFace = ({ name, notes, traits }) => (
         </div>
 
         <div className="CardNotes">
-          {notes.map(({ name, desc }, index) => (
+          {notes.map(({ name, desc }, index): JSX.Element => (
             <div key={index} className="CardNote">
               <div className="CardNoteName">{name}</div>
               <div className="CardNoteDesc">{desc}</div>
@@ -37,14 +49,6 @@ export const NotesCardFace = ({ name, notes, traits }) => (
 
 
 NotesCardFace.displayName = "NotesCardFace"
-
-
-
-NotesCardFace.propTypes = {
-  name:   PropTypes.string,
-  notes:  PropTypes.array,
-  traits: PropTypes.array,
-}
 
 
 

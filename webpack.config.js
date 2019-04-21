@@ -2,7 +2,7 @@ const path = require("path");
 
 module.exports = {
   mode: "development",
-  entry: ["babel-polyfill", "./src/index.js"],
+  entry: "./src/index.tsx",
   output: {
     filename: "build.js",
     path: path.resolve(__dirname, "public"),
@@ -10,22 +10,34 @@ module.exports = {
   },
   devServer: {
     contentBase: "./public",
-    port: 3000,
     historyApiFallback: {
       index: "index.html",
-    }
+    },
+    host: "localhost",
+    https: true,
+    index: "index.html",
+    open: true,
+    port: 3000,
+    public: "localhost:3000",
+    watchOptions: {
+      aggregateTimeout: 500,
+      poll: true,
+    },
+  },
+  resolve: {
+    extensions: [ ".ts", ".tsx", ".js", ".jsx", ".styl" ]
   },
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(t|j)sx?$/,
         exclude: /node-modules/,
+        loader: "awesome-typescript-loader",
+      },
+      {
+        test: /\.js$/,
         enforce: "pre",
-        enforce: "post",
-        loader: "babel-loader",
-        options: {
-          presets: ["@babel/preset-env", "@babel/preset-react"],
-        },
+        loader: "source-map-loader",
       },
       {
         test: /\.(png|ttf|woff|woff2)$/,
@@ -44,10 +56,23 @@ module.exports = {
           { loader: "stylus-loader" },
         ]
       },
+      {
+        test: /\.(t|j)sx?$/,
+        exclude: /node-modules/,
+        use: {
+          loader: "eslint-loader",
+          options: {
+            configFile: ".eslintrc.js"
+          }
+        }
+      },
     ],
   },
-  resolve: {
-    extensions: [".js", ".styl"]
-  },
+  devtool: "source-map",
   plugins: [],
+  watch: true,
+  watchOptions: {
+    aggregateTimeout: 500,
+    poll: true,
+  },
 }

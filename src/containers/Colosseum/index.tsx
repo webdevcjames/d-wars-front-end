@@ -1,5 +1,5 @@
-import React, { Component as Container } from "react"
-import PropTypes from "prop-types"
+import * as React from "react"
+// import { Component as Container } from "react"
 
 import CardSet from "../../components/CardSet"
 import Card from "../../components/Card"
@@ -20,12 +20,16 @@ const kenshi = {
   stats: {
     health: "25"
   },
-  moves: [ { names: [ "Tele-Flurry" ], values: [ "1*" ] }, { names: [ "Tele-Push", "Tele-Beatdown" ], values: [ "2" ] }, { names: [ "Soul Blade" ], values: [ "3" ] } ],
+  moves: [
+    { names: [ "Tele-Flurry" ], values: [ "1*" ] },
+    { names: [ "Tele-Push", "Tele-Beatdown" ], values: [ "2" ] },
+    { names: [ "Soul Blade" ], values: [ "3" ] }
+  ],
   notes: [
-    { name: "Blade Absorb",      desc: "lorem something something lorem something something" },
-    { name: "Heightened Senses", desc: "lorem something something lorem something something" },
-    { name: "Tele-Flurry",       desc: "lorem something something lorem something something" },
-    { name: "Tele-Push",         desc: "lorem something something lorem something something" },
+    { name: "Blade Absorb",      desc: "Mollit proident incididunt amet et Lorem nostrud proident mollit adipisicing sint amet adipisicing ut veniam." },
+    { name: "Heightened Senses", desc: "Elit esse proident do ut pariatur dolor est consequat pariatur." },
+    { name: "Tele-Flurry",       desc: "Sunt consectetur fugiat consequat exercitation excepteur velit cillum ipsum deserunt eiusmod exercitation in." },
+    { name: "Tele-Push",         desc: "Sit laboris amet voluptate excepteur consectetur pariatur laborum excepteur pariatur dolore voluptate." },
   ],
   traits: [ "Revenge" ],
   dFactors: [ {
@@ -43,15 +47,19 @@ const kenshi = {
 
 
 
-export class Colosseum extends Container {
+export class Colosseum extends React.Component<{}, {}> {
 
-  constructor(props) {
+  public displayName: string
+
+  public constructor(props: {}) {
     super(props)
+
+    this.displayName = "Colosseum"
   }
 
 
 
-  render() {
+  public render(): JSX.Element {
     return (
       <div className="AppInnerWrap">
         <div className="BattleWrap">
@@ -72,7 +80,7 @@ export class Colosseum extends Container {
                 <NotesCardFace {...kenshi} />
               </Card>
               <Card>
-                {kenshi.dFactors.map((dFactor, index) => 
+                {kenshi.dFactors.map((dFactor, index): JSX.Element => 
                   <DFactorCardFace key={index} name={kenshi.name} dFactor={dFactor} />)}
               </Card>
               <Card>
@@ -105,14 +113,6 @@ export class Colosseum extends Container {
     )
   }
 }
-
-
-
-Colosseum.displayName = "Colosseum"
-
-
-
-Colosseum.propTypes = {}
 
 
 

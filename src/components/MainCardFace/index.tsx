@@ -1,5 +1,4 @@
-import React from "react"
-import PropTypes from "prop-types"
+import * as React from "react"
 
 import CardFace from "../../components/CardFace"
 
@@ -7,7 +6,21 @@ import "./style.styl"
 
 
 
-export const MainCardFace = ({ art, name, stats, moves }) => (
+interface Move {
+  names:  string[]
+  values: string[]
+}
+
+interface Props {
+  art:   string
+  name:  string
+  stats: { health: string }
+  moves: Move[]
+}
+
+
+
+export const MainCardFace = ({ art, name, stats, moves }: Props): JSX.Element => (
   <CardFace>
     <div className="CardArt" style={{ backgroundImage: `url(${art})` }}>
       <div className="CardFill" />
@@ -31,9 +44,9 @@ export const MainCardFace = ({ art, name, stats, moves }) => (
             <div className="CardHealth">{stats.health}</div>
           </div>
 
-          {moves.map(({ names, values }, index) => (
+          {moves.map(({ names, values }, index): JSX.Element => (
             <div key={index} className="CardMove">
-              <div className="CardMoveName" dangerouslySetInnerHTML={{ __html: names.map(name => `<span>${name}</span>`).join(" / ") }} />
+              <div className="CardMoveName" dangerouslySetInnerHTML={{ __html: names.map((name): string => `<span>${name}</span>`).join(" / ") }} />
               <div className="CardMoveSpacer" />
               <div className="CardMoveValue">{values.join(" / ")}</div>
             </div>
@@ -47,15 +60,6 @@ export const MainCardFace = ({ art, name, stats, moves }) => (
 
 
 MainCardFace.displayName = "MainCardFace"
-
-
-
-MainCardFace.propTypes = {
-  art:      PropTypes.string,
-  name:     PropTypes.string,
-  stats:    PropTypes.object,
-  moves:    PropTypes.array,
-}
 
 
 

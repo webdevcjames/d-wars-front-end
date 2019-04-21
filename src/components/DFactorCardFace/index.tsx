@@ -1,5 +1,4 @@
-import React from "react"
-import PropTypes from "prop-types"
+import * as React from "react"
 
 import CardFace from "../../components/CardFace"
 
@@ -7,7 +6,18 @@ import "./style.styl"
 
 
 
-export const DFactorCardFace = ({ name, dFactor: { title, type, desc } }) => (
+interface Props {
+  name: string
+  dFactor: {
+    title: string
+    type:  string
+    desc:  string
+  }
+}
+
+
+
+export const DFactorCardFace = ({ name, dFactor: { title, type, desc } }: Props): JSX.Element => (
   <CardFace type="DFactor">
     <div className="CardFill" />
     
@@ -31,17 +41,6 @@ export const DFactorCardFace = ({ name, dFactor: { title, type, desc } }) => (
 
 
 DFactorCardFace.displayName = "DFactorCardFace"
-
-
-
-DFactorCardFace.propTypes = {
-  name:     PropTypes.string,
-  dFactor:  PropTypes.shape({
-    title: PropTypes.string,
-    type:  PropTypes.string,
-    desc:  PropTypes.string,
-  }),
-}
 
 
 

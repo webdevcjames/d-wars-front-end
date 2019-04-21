@@ -1,12 +1,20 @@
-import React from "react"
-import PropTypes from "prop-types"
+import * as React from "react"
 import classNames from "classnames"
 
 import "./style.styl"
 
 
 
-export const CardFace = ({ children, type }) => {
+type CardType = undefined | "Notes" | "DFactor" | "Types" | "Placeholder"
+
+interface Props {
+  children: JSX.Element[]
+  type?:    CardType
+}
+
+
+
+export const CardFace = ({ children, type }: Props): JSX.Element => {
   return (
     <div
       className={classNames("CardFace", type)}
@@ -24,13 +32,6 @@ export const CardFace = ({ children, type }) => {
 
 
 CardFace.displayName = "CardFace"
-
-
-
-CardFace.propTypes = {
-  children: PropTypes.node,
-  type:     PropTypes.string,
-}
 
 
 

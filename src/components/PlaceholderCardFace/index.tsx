@@ -1,5 +1,4 @@
-import React from "react"
-import PropTypes from "prop-types"
+import * as React from "react"
 
 import CardFace from "../../components/CardFace"
 
@@ -7,7 +6,7 @@ import "./style.styl"
 
 
 
-export const PlaceholderCardFace = () => (
+export const PlaceholderCardFace = (): JSX.Element => (
   <CardFace type="Placeholder">
     <div className="CardFill" />
     
@@ -24,10 +23,6 @@ export const PlaceholderCardFace = () => (
 
 
 PlaceholderCardFace.displayName = "PlaceholderCardFace"
-
-
-
-PlaceholderCardFace.propTypes = {}
 
 
 

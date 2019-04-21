@@ -1,33 +1,47 @@
-import React, { Component } from "react"
-import PropTypes from "prop-types"
+import * as React from "react"
+// import { Component } from "react"
 
 import "./style.styl"
 
 
 
-export class CardSet extends Component {
+interface Props {
+  children: JSX.Element[]
+}
 
-  constructor(props) {
+interface State {
+  translation: number
+}
+
+
+
+export class CardSet extends React.Component<Props, State> {
+
+  public displayName: string
+
+  public constructor(props: Props) {
     super(props)
 
     this.state = {
       translation: 0
     }
+
+    this.displayName = "CardSet"
   }
 
 
 
-  render() {
+  public render(): JSX.Element {
     const { children } = this.props
     const { translation } = this.state
 
     return (
       <div
         className="CardSet"
-        onMouseOut={() => this.setState({ translation: 0 })}
-        onMouseOver={() => this.setState({ translation: 275 })}
+        onMouseOut={(): void => this.setState({ translation: 0 })}
+        onMouseOver={(): void => this.setState({ translation: 275 })}
       >
-        {children.map((child, index) => (
+        {children.map((child: JSX.Element, index: number): JSX.Element => (
           <div
             key={index}
             className="CardPlacer"
@@ -43,14 +57,6 @@ export class CardSet extends Component {
     )
   }
 }
-
-
-
-CardSet.displayName = "CardSet"
-
-
-
-CardSet.propTypes = {}
 
 
 

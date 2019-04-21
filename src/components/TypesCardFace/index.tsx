@@ -1,5 +1,4 @@
-import React from "react"
-import PropTypes from "prop-types"
+import * as React from "react"
 
 import CardFace from "../../components/CardFace"
 
@@ -7,12 +6,20 @@ import "./style.styl"
 
 
 
-export const TypesCardFace = ({ name, moveTypes, resistances }) => {
+interface Props {
+  name:        string
+  moveTypes:   string[][]
+  resistances: string[]
+}
+
+
+
+export const TypesCardFace = ({ name, moveTypes, resistances }: Props): JSX.Element => {
   let maxMoveTypeColLen = 2
-  moveTypes.forEach(moveType => {
+  moveTypes.forEach((moveType): void => {
     if (moveType.length > maxMoveTypeColLen) maxMoveTypeColLen = moveType.length })
   let paddedMoveTypes = moveTypes.concat(new Array(4 - moveTypes.length).fill([], moveTypes.length, 4))
-  paddedMoveTypes = paddedMoveTypes.map(move =>
+  paddedMoveTypes = paddedMoveTypes.map((move): string[] =>
     move.concat(new Array(maxMoveTypeColLen - move.length).fill(null, move.length, maxMoveTypeColLen)))
   const resistancePadding = 4 - (resistances.length % 4)
   let paddedResistances = resistances.concat(new Array(resistancePadding).fill(null, resistances.length, resistancePadding))
@@ -28,13 +35,13 @@ export const TypesCardFace = ({ name, moveTypes, resistances }) => {
           <div className="CardTypes">
             <div className="CardMoveTypesHeading">Move Types</div>
             <div className="CardMoveTypes">
-              {paddedMoveTypes.map((move, colIndex) => (
+              {paddedMoveTypes.map((move, colIndex): JSX.Element => (
                 <div key={colIndex} className="CardMoveTypeCol">
-                  {move.map((moveType, rowIndex) =>
+                  {move.map((moveType, rowIndex): JSX.Element =>
                     <div
                       key={`${colIndex}${rowIndex}`}
                       className="CardMoveType"
-                      style={moveType && { backgroundImage: `url(${moveType})` }}
+                      style={{ backgroundImage: moveType ? `url(${moveType})` : "" }}
                     />
                   )}
                 </div>
@@ -42,9 +49,9 @@ export const TypesCardFace = ({ name, moveTypes, resistances }) => {
             </div>
             <div className="CardResistancesHeading">Resistances</div>
             <div className="CardResistances">
-              {paddedResistances.map((resistance, index) =>
+              {paddedResistances.map((resistance, index): JSX.Element =>
                 <div key={index} className="CardResistanceCol">
-                  <div className="CardResistance" style={resistance && { backgroundImage: `url(${resistance})` }} />
+                  <div className="CardResistance" style={{ backgroundImage: resistance ? `url(${resistance})` : "" }} />
                 </div>
               )}
             </div>
@@ -58,14 +65,6 @@ export const TypesCardFace = ({ name, moveTypes, resistances }) => {
 
 
 TypesCardFace.displayName = "TypesCardFace"
-
-
-
-TypesCardFace.propTypes = {
-  name:        PropTypes.string,
-  moveTypes:   PropTypes.array,
-  resistances: PropTypes.array,
-}
 
 
 

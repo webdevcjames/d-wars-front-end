@@ -1,5 +1,5 @@
-import React, { Component as Container } from "react"
-import PropTypes from "prop-types"
+import * as React from "react"
+// import { Component as Container } from "react"
 
 import NavLink from "../../components/NavLink"
 
@@ -7,15 +7,19 @@ import "./style.styl"
 
 
 
-export class Dashboard extends Container {
+export class Dashboard extends React.Component<{}, {}> {
 
-  constructor(props) {
+  public displayName: string
+
+  public constructor(props: {}) {
     super(props)
+
+    this.displayName = "Dashboard"
   }
 
 
 
-  render() {
+  public render(): JSX.Element {
     return (
       <div className="AppInnerWrap">
         <h1 className="heading" title="This might just have to be an image, because of the border">
@@ -48,14 +52,6 @@ export class Dashboard extends Container {
     )
   }
 }
-
-
-
-Dashboard.displayName = "Dashboard"
-
-
-
-Dashboard.propTypes = {}
 
 
 
