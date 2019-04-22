@@ -11,6 +11,8 @@ import NotesCardFace from "components/NotesCardFace"
 import PlaceholderCardFace from "components/PlaceholderCardFace"
 import TypesCardFace from "components/TypesCardFace"
 
+import TCard from "types/TCard"
+
 import MockData from "constants/MockData"
 
 import "./style"
@@ -54,7 +56,7 @@ export class Colosseum extends React.Component<{}, {}> {
                 <NotesCardFace {...kenshi} />
               </Card>
               <Card>
-                {kenshi.dFactors.map((dFactor, index): JSX.Element => 
+                {kenshi.moves.dFactor.map((dFactor: TCard.DFactor, index: number): JSX.Element => 
                   <DFactorCardFace key={index} name={kenshi.name} dFactor={dFactor} />)}
               </Card>
               <Card>

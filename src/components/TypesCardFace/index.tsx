@@ -10,22 +10,22 @@ import "./style"
 
 interface Props {
   name:        TCard.Name
-  moveTypes:   TCard.MoveType[][]
+  moves:       TCard.Moves
   resistances: TCard.Resistance[]
 }
 
 
 
-export const TypesCardFace = ({ name, moveTypes, resistances }: Props): JSX.Element => {
+export const TypesCardFace = ({ name, moves, resistances }: Props): JSX.Element => {
   let maxMoveTypeColLen = 2
-  moveTypes.forEach((moveType): void => {
-    if (moveType.length > maxMoveTypeColLen) maxMoveTypeColLen = moveType.length })
-  let paddedMoveTypes = moveTypes.concat(new Array(4 - moveTypes.length).fill([], moveTypes.length, 4))
-  paddedMoveTypes = paddedMoveTypes.map((move): TCard.MoveType[] =>
-    move.concat(new Array(maxMoveTypeColLen - move.length).fill(null, move.length, maxMoveTypeColLen)))
+  const moveMatrix: ({ type: TCard.MoveType }[])[] = Object.values(moves)
+  moveMatrix.forEach((move: { type: TCard.MoveType }[]): void => {
+    if (move.length > maxMoveTypeColLen) maxMoveTypeColLen = move.length })
+  const paddedMoveTypes: TCard.MoveType[][] = moveMatrix.map((move: { type: TCard.MoveType }[]): TCard.MoveType[] =>
+    move.map(({ type }: { type: TCard.MoveType }): TCard.MoveType => type).concat((new Array(maxMoveTypeColLen - move.length)).fill(undefined)))
   const resistancePadding = 4 - (resistances.length % 4)
-  let paddedResistances = resistances.concat(new Array(resistancePadding).fill(null, resistances.length, resistancePadding))
-
+  const paddedResistances = resistances.concat((new Array(resistancePadding)).fill(undefined))
+  
   return (
     <CardFace type="Types">
       <div className="CardFill" />

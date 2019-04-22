@@ -10,7 +10,7 @@ interface Props {
   name:  TCard.Name
   art:   TCard.Art
   stats: TCard.Stats
-  moves: TCard.Move[]
+  moves: TCard.Moves
 }
 
 
@@ -39,11 +39,17 @@ export const MainCardFace = ({ art, name, stats, moves }: Props): JSX.Element =>
             <div className="CardHealth">{stats.health}</div>
           </div>
 
-          {moves.map(({ names, values }, index): JSX.Element => (
+          {Object.values(moves).slice(0, 3).map((move: TCard.StandardMove[], index): JSX.Element => (
             <div key={index} className="CardMove">
-              <div className="CardMoveName" dangerouslySetInnerHTML={{ __html: names.map((name): string => `<span>${name}</span>`).join(" / ") }} />
+              <div
+                className="CardMoveName"
+                dangerouslySetInnerHTML={{ __html: move.map(({ name }): string => `<span>${name}</span>`).join(" / ") }}
+              />
               <div className="CardMoveSpacer" />
-              <div className="CardMoveValue">{values.join(" / ")}</div>
+              <div className="CardMoveValue">
+                {move.filter(({ value }, index): boolean => index === 0 ? true : value !== move[index - 1].value)
+                  .map(({ value }): string => value).join(" / ")}
+              </div>
             </div>
           ))}
         </div>

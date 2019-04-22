@@ -1,0 +1,104 @@
+declare namespace TCard {
+  type Type =
+  undefined
+  | "Notes"
+  | "DFactor"
+  | "Types"
+  | "Placeholder"
+
+  type Class =
+  "Melee"
+  | "Projectionist"
+  | "SupportMelee"
+  | "SupportProjectionist"
+  | "Powerhouse"
+
+  type Trait = 
+  "Challenge"
+  | "Ego"
+  | "Focus"
+  | "Hide"
+  | "Humor"
+  | "Intellect"
+  | "Intimidate"
+  | "Leader"
+  | "Protect"
+  | "Revenge"
+  | "Sacrifice"
+  | "Deadpool"
+  
+  type MoveType =
+  undefined
+  | "Blunt"
+  | "Projectile"
+  | "Fire"
+  | "Blade"
+  | "Force"
+  | "Energy"
+  | "Electric"
+  | "Ice"
+  | "Water"
+  | "Ground"
+  | "Illusion"
+  | "Poison"
+  | "Darkness"
+  | "Mind"
+  | "Sound"
+  | "Holy"
+  | "Magic"
+  | "Special"
+
+  type DFactorType = "Attack" | "Support"
+
+  type Resistance = MoveType
+
+
+
+  type Name = string
+
+  type Art = string
+
+  interface Stats {
+    class: Class
+    health: string
+  }
+
+  interface StandardMove {
+    name:  string
+    value: string
+    type?: MoveType | MoveType[]
+  }
+
+  interface DFactor {
+    title:        string
+    dFactorType:  DFactorType
+    desc:         string
+    type?:        MoveType | MoveType[]
+  }
+
+  interface Moves {
+    base:    StandardMove[]
+    rage:    StandardMove[]
+    final:   StandardMove[]
+    dFactor: DFactor[]
+  }
+
+  interface Note {
+    name: string
+    desc: string
+  }
+
+  interface Card {
+    name:        Name
+    art:         Art
+    stats:       Stats
+    moves:       Moves
+    notes:       Note[]
+    traits:      Trait[]
+    resistances: Resistance[]
+  }
+}
+
+
+
+export default TCard

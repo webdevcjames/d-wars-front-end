@@ -15,7 +15,7 @@ interface Props {
 
 
 
-export const DFactorCardFace = ({ name, dFactor: { title, type, desc } }: Props): JSX.Element => (
+export const DFactorCardFace = ({ name, dFactor: { title, dFactorType, desc } }: Props): JSX.Element => (
   <CardFace type="DFactor">
     <div className="CardFill" />
     
@@ -28,7 +28,7 @@ export const DFactorCardFace = ({ name, dFactor: { title, type, desc } }: Props)
             <div className="CardDFactorHeading">D-Factor</div>
             <div className="CardDFactorTitle">{title}</div>
           </div>
-          <div className="CardDFactorType">{type}</div>
+          <div className="CardDFactorType">{dFactorType}</div>
           <div className="CardDFactorDesc">{desc}</div>
         </div>
       </div>

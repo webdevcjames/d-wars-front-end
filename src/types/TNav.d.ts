@@ -1,5 +1,5 @@
-export namespace TNav {
-  export interface Link {
+declare namespace TNav {
+  interface Link {
     link: string
     label: string
     items?: Link[]

@@ -11,11 +11,29 @@ export const MockData: { cards: { [card: string]: TCard.Card } } = {
         class: "Melee",
         health: "25"
       },
-      moves: [
-        { names: [ "Tele-Flurry" ], values: [ "1*" ] },
-        { names: [ "Tele-Push", "Tele-Beatdown" ], values: [ "2" ] },
-        { names: [ "Soul Blade" ], values: [ "3" ] }
-      ],
+      moves: {
+        base: [
+          { name: "Tele-Flurry", value: "1*", type: "Blunt" }
+        ],
+        rage: [
+          { name: "Tele-Push",     value: "2", type: "Force" },
+          { name: "Tele-Beatdown", value: "2", type: "Blunt" }
+        ],
+        final: [
+          { name: "Soul Blade", value: "3", type: "Blade" }
+        ],
+        dFactor: [ {
+          title:       "Way of the Blade",
+          dFactorType: "Attack",
+          desc:        "A 4 DMG attack is performed against the chosen opponent",
+          type:        "Blade"
+        }, {
+          title:       "Demon Summon",
+          dFactorType: "Support",
+          desc:        "For Kenshi's next 3 moves, Kenshi can perform an additional base attack",
+          type:        "Special"
+        } ],
+      },
       notes: [
         { name: "Blade Absorb",      desc: "Mollit proident incididunt amet et Lorem nostrud proident mollit adipisicing sint amet adipisicing ut veniam." },
         { name: "Heightened Senses", desc: "Elit esse proident do ut pariatur dolor est consequat pariatur." },
@@ -23,17 +41,7 @@ export const MockData: { cards: { [card: string]: TCard.Card } } = {
         { name: "Tele-Push",         desc: "Sit laboris amet voluptate excepteur consectetur pariatur laborum excepteur pariatur dolore voluptate." },
       ],
       traits: [ "Revenge" ],
-      dFactors: [ {
-        title: "Way of the Blade",
-        type:  "Attack",
-        desc:  "A 4 DMG attack is performed against the chosen opponent"
-      }, {
-        title: "Demon Summon",
-        type:  "Support",
-        desc:  "For Kenshi's next 3 moves, Kenshi can perform an additional base attack"
-      } ],
-      moveTypes: [],
-      resistances: []
+      resistances: [ "Illusion", "Darkness" ]
     }
   }
 }
