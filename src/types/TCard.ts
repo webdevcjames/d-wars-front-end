@@ -11,25 +11,44 @@ export namespace TCard {
                     | "SupportProjectionist"
                     | "Powerhouse"
 
-  export type MoveType = "Challenge"
-                       | "Ego"
-                       | "Focus"
-                       | "Hide"
-                       | "Humor"
-                       | "Intellect"
-                       | "Intimidate"
-                       | "Leader"
-                       | "Protect"
-                       | "Revenge"
-                       | "Sacrifice"
-                       | "Deadpool"
+  export type Trait = "Challenge"
+                    | "Ego"
+                    | "Focus"
+                    | "Hide"
+                    | "Humor"
+                    | "Intellect"
+                    | "Intimidate"
+                    | "Leader"
+                    | "Protect"
+                    | "Revenge"
+                    | "Sacrifice"
+                    | "Deadpool"
+  
+  export type MoveType = "Blunt"
+                       | "Projectile"
+                       | "Fire"
+                       | "Blade"
+                       | "Force"
+                       | "Energy"
+                       | "Electric"
+                       | "Ice"
+                       | "Water"
+                       | "Ground"
+                       | "Illusion"
+                       | "Poison"
+                       | "Darkness"
+                       | "Mind"
+                       | "Sound"
+                       | "Holy"
+                       | "Magic"
+                       | "Special"
 
   export type DFactorType = "Attack"
                           | "Support"
 
   export type Resistance  = MoveType
 
-  
+
 
   export type Name = string
   
@@ -51,8 +70,6 @@ export namespace TCard {
     name: string
     desc: string
   }
-  
-  export type Trait = string
 
   export interface DFactor {
     title: string
