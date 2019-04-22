@@ -1,8 +1,10 @@
+var webpack = require('webpack');
 const path = require("path");
+var dotenv = require('dotenv').config({path: __dirname + '/.env'});
 
 module.exports = {
   mode: "development",
-  entry: "./src/index.tsx",
+  entry: "./src",
   output: {
     filename: "build.js",
     path: path.resolve(__dirname, "public"),
@@ -25,6 +27,13 @@ module.exports = {
     },
   },
   resolve: {
+    alias: {
+      components: path.resolve(__dirname, "src/components/"),
+      constants: path.resolve(__dirname, "src/constants/"),
+      containers: path.resolve(__dirname, "src/containers/"),
+      stylus: path.resolve(__dirname, "src/stylus/"),
+      types: path.resolve(__dirname, "src/types/"),
+    },
     extensions: [ ".ts", ".tsx", ".js", ".jsx", ".styl" ]
   },
   module: {
@@ -69,7 +78,11 @@ module.exports = {
     ],
   },
   devtool: "source-map",
-  plugins: [],
+  plugins: [
+    new webpack.DefinePlugin({
+      "process.env": dotenv.parsed
+    })
+  ],
   watch: true,
   watchOptions: {
     aggregateTimeout: 500,

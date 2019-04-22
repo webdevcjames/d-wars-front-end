@@ -1,15 +1,16 @@
 import * as React from "react"
+
 import classNames from "classnames"
 
-import "./style.styl"
+import TCard from "types/TCard"
+
+import "./style"
 
 
-
-type CardType = undefined | "Notes" | "DFactor" | "Types" | "Placeholder"
 
 interface Props {
   children: JSX.Element[]
-  type?:    CardType
+  type?:    TCard.Type
 }
 
 

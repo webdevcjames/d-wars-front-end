@@ -22,7 +22,9 @@ module.exports = {
   },
   "plugins": [
     "react",
-    "@typescript-eslint"
+    "@typescript-eslint",
+    "import",
+    "import-order-alphabetical"
   ],
   "rules": {
     "react/jsx-uses-react": "error",
@@ -61,5 +63,24 @@ module.exports = {
         }
       }
     ],
+    "sort-imports": "off",
+    "import/order": "off",
+    "import-order-alphabetical/order": "off",
+    "simple-import-sort/sort": "off"
   }
 }
+
+// @TODO when ordered-imports from tslint is brought into @typescript-eslint
+
+// "import-order-alphabetical/order": [
+//   "error",
+//   {
+//     "groups": [
+//       "builtin",
+//       "external",
+//       [ "parent", "sibling", "internal" ],
+//       "index"
+//     ],
+//     "newlines-between": "always-and-inside-groups"
+//   }
+// ],

@@ -1,8 +1,9 @@
 import * as React from "react"
-import { Route, withRouter, RouteComponentProps } from "react-router-dom"
+import { Route, RouteComponentProps, withRouter } from "react-router-dom"
+
 import classNames from "classnames"
 
-import "./style.styl"
+import "./style"
 
 
 

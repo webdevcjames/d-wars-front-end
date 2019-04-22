@@ -1,8 +1,8 @@
 import * as React from "react"
 
-import CardFace from "../../components/CardFace"
+import CardFace from "components/CardFace"
 
-import "./style.styl"
+import "./style"
 
 
 

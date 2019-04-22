@@ -1,18 +1,16 @@
 import * as React from "react"
 
-import CardFace from "../../components/CardFace"
+import CardFace from "components/CardFace"
 
-import "./style.styl"
+import TCard from "types/TCard"
+
+import "./style"
 
 
 
 interface Props {
-  name: string
-  dFactor: {
-    title: string
-    type:  string
-    desc:  string
-  }
+  name: TCard.Name
+  dFactor: TCard.DFactor
 }
 
 

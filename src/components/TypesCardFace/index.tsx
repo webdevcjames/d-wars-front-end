@@ -1,15 +1,17 @@
 import * as React from "react"
 
-import CardFace from "../../components/CardFace"
+import CardFace from "components/CardFace"
 
-import "./style.styl"
+import TCard from "types/TCard"
+
+import "./style"
 
 
 
 interface Props {
-  name:        string
-  moveTypes:   string[][]
-  resistances: string[]
+  name:        TCard.Name
+  moveTypes:   TCard.MoveType[][]
+  resistances: TCard.Resistance[]
 }
 
 
@@ -19,7 +21,7 @@ export const TypesCardFace = ({ name, moveTypes, resistances }: Props): JSX.Elem
   moveTypes.forEach((moveType): void => {
     if (moveType.length > maxMoveTypeColLen) maxMoveTypeColLen = moveType.length })
   let paddedMoveTypes = moveTypes.concat(new Array(4 - moveTypes.length).fill([], moveTypes.length, 4))
-  paddedMoveTypes = paddedMoveTypes.map((move): string[] =>
+  paddedMoveTypes = paddedMoveTypes.map((move): TCard.MoveType[] =>
     move.concat(new Array(maxMoveTypeColLen - move.length).fill(null, move.length, maxMoveTypeColLen)))
   const resistancePadding = 4 - (resistances.length % 4)
   let paddedResistances = resistances.concat(new Array(resistancePadding).fill(null, resistances.length, resistancePadding))

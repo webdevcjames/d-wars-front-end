@@ -1,9 +1,9 @@
 import * as React from "react"
 // import { Component as Container } from "react"
 
-import NavLink from "../../components/NavLink"
+import NavLink from "components/NavLink"
 
-import "./style.styl"
+import "./style"
 
 
 

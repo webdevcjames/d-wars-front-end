@@ -1,8 +1,9 @@
 import * as React from "react"
 // import { Component } from "react"
+
 import classNames from "classnames"
 
-import "./style.styl"
+import "./style"
 
 
 

@@ -1,21 +1,16 @@
 import * as React from "react"
 
-import CardFace from "../../components/CardFace"
+import CardFace from "components/CardFace"
 
-import "./style.styl"
+import TCard from "types/TCard"
 
-
-
-interface Move {
-  names:  string[]
-  values: string[]
-}
+import "./style"
 
 interface Props {
-  art:   string
-  name:  string
-  stats: { health: string }
-  moves: Move[]
+  name:  TCard.Name
+  art:   TCard.Art
+  stats: TCard.Stats
+  moves: TCard.Move[]
 }
 
 
