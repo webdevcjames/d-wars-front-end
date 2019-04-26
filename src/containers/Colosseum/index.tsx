@@ -15,6 +15,8 @@ import TCard from "types/TCard"
 
 import MockData from "constants/MockData"
 
+import BattleBackground from "images/kahns-colosseum-cropped.jpg"
+
 import "./style"
 
 
@@ -40,7 +42,7 @@ export class Colosseum extends React.Component<{}, {}> {
       <div className="AppInnerWrap">
         <div className="BattleWrap">
           <div className="BattleBackgroundWrap">
-            <div className="BattleBackground" style={{ backgroundImage: "url(images/kahns-colosseum-cropped.jpg)" }} />
+            <div className="BattleBackground" style={{ backgroundImage: `url(${BattleBackground})` }} />
             <div className="BattleGradient" />
           </div>
 

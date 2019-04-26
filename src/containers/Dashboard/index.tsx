@@ -3,6 +3,8 @@ import * as React from "react"
 
 import NavLink from "components/NavLink"
 
+import BattleBackground from "images/kahns-colosseum-cropped.jpg"
+
 import "./style"
 
 
@@ -23,11 +25,11 @@ export class Dashboard extends React.Component<{}, {}> {
     return (
       <div className="AppInnerWrap">
         <h1 className="heading" title="This might just have to be an image, because of the border">
-          DIMENSION <span style={{ letterSpacing: "-4px", margin: "0 0 0 4px" }}>W</span>ARS
+          DIMENSION <span style={{ letterSpacing: "-4px", margin: "0 0 0 -16px" }}>W</span>ARS
         </h1>
 
         <div className="FeatureWrap">
-          <div className="Feature" style={{ backgroundImage: "url(images/kahns-colosseum-cropped.jpg)" }} />
+          <div className="Feature" style={{ backgroundImage: `url(${BattleBackground})` }} />
           <div className="FeatureGradient" />
         </div>
 

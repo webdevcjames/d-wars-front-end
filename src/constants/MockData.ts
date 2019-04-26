@@ -1,12 +1,14 @@
 import TCard from "types/TCard"
 
+import Kenshi from "images/kenshi.png"
+
 
 
 export const MockData: { cards: { [card: string]: TCard.Card } } = {
   cards: {
     kenshi: {
       name:  "Kenshi",
-      art:   "/images/kenshi.png",
+      art:   Kenshi,
       stats: {
         class: "Melee",
         health: "25"

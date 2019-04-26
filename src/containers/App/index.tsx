@@ -10,6 +10,8 @@ import Dashboard from "containers/Dashboard"
 
 import { menuItems } from "constants/App"
 
+import Avatar from "images/avatar.png"
+
 import "./style"
 
 
@@ -35,7 +37,7 @@ export class App extends React.Component<{}, {}> {
           <div className="AppContent">
             <Header>
               <div className="Username">Korill Venn</div>
-              <img src="images/avatar.png" className="Avatar"/>
+              <img src={Avatar} className="Avatar"/>
             </Header>
 
             <Switch>

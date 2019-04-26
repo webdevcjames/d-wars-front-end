@@ -1,6 +1,8 @@
-var webpack = require('webpack');
+const webpack = require("webpack");
 const path = require("path");
-var dotenv = require('dotenv').config({path: __dirname + '/.env'});
+const dotenv = require('dotenv').config({path: __dirname + "/.env"});
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 module.exports = {
   mode: "development",
@@ -31,10 +33,17 @@ module.exports = {
       components: path.resolve(__dirname, "src/components/"),
       constants: path.resolve(__dirname, "src/constants/"),
       containers: path.resolve(__dirname, "src/containers/"),
+      fonts: path.resolve(__dirname, "assets/fonts/"),
+      images: path.resolve(__dirname, "assets/images/"),
       stylus: path.resolve(__dirname, "src/stylus/"),
       types: path.resolve(__dirname, "src/types/"),
     },
-    extensions: [ ".ts", ".tsx", ".js", ".jsx", ".styl" ]
+    extensions: [ ".ts", ".tsx", ".js", ".jsx", ".styl", ".jpg", ".png" ],
+    plugins: [
+      new TsconfigPathsPlugin({
+        configFile: path.resolve(__dirname, "tsconfig.json")
+      })
+    ]
   },
   module: {
     rules: [
@@ -49,21 +58,42 @@ module.exports = {
         loader: "source-map-loader",
       },
       {
-        test: /\.(png|ttf|woff|woff2)$/,
+        test: /\.(ttf|woff|woff2)$/,
+        include: [ path.resolve(__dirname, "assets/fonts/") ],
         use: [
           {
-            loader: "url-loader?limit=100000",
-            options: {},
+            loader: "file-loader",
+            options: {
+              name: "[name]-[hash].[ext]",
+              outputPath: "fonts/",
+              publicPath: "fonts/",
+            },
+          },
+        ]
+      },
+      {
+        test: /\.(jpg|png)$/,
+        include: [ path.resolve(__dirname, "assets/images/") ],
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name]-[hash].[ext]",
+              outputPath: "images/",
+              publicPath: "images/",
+            },
           },
         ]
       },
       {
         test: /\.styl$/,
-        use: [
-          { loader: "style-loader" },
-          { loader: "css-loader" },
-          { loader: "stylus-loader" },
-        ]
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: [
+            { loader: "css-loader" },
+            { loader: "stylus-loader" },
+          ]
+        })
       },
       {
         test: /\.(t|j)sx?$/,
@@ -81,7 +111,16 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       "process.env": dotenv.parsed
-    })
+    }),
+    new ExtractTextPlugin({
+      filename: "bundle.css"
+    }),
+    new webpack.LoaderOptionsPlugin({
+      test: /\.styl$/,
+      stylus: {
+        preferPathResolver: "webpack"
+      }
+    }),
   ],
   watch: true,
   watchOptions: {
