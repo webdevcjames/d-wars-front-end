@@ -2,17 +2,30 @@ const webpack = require("webpack");
 const path = require("path");
 const dotenv = require('dotenv').config({path: __dirname + "/.env"});
 
-const CopyPlugin = require("copy-webpack-plugin");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 module.exports = {
   mode: "development",
   entry: "./src",
   output: {
-    filename: "build.js",
+    filename: "[name].[hash].js",
     path: path.resolve(__dirname, "public"),
     publicPath: "/",
+  },
+  optimization: {
+    runtimeChunk: "single",
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: "vendors",
+          chunks: "all"
+        }
+      }
+    }
   },
   devServer: {
     contentBase: "./public",
@@ -22,7 +35,6 @@ module.exports = {
     host: "0.0.0.0",
     https: true,
     index: "index.html",
-    open: true,
     port: 3000,
     public: "localhost:3000",
     hot: true,
@@ -67,7 +79,7 @@ module.exports = {
           {
             loader: "file-loader",
             options: {
-              name: "[name]-[hash].[ext]",
+              name: "[name].[hash].[ext]",
               outputPath: "fonts/",
               publicPath: "fonts/",
             },
@@ -81,7 +93,7 @@ module.exports = {
           {
             loader: "file-loader",
             options: {
-              name: "[name]-[hash].[ext]",
+              name: "[name].[hash].[ext]",
               outputPath: "images/",
               publicPath: "images/",
             },
@@ -112,11 +124,18 @@ module.exports = {
   },
   devtool: "source-map",
   plugins: [
-    new webpack.DefinePlugin({
-      "process.env": dotenv.parsed
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      filename: "index.html",
+      title: "Dimension Wars",
+      template: path.resolve(__dirname, "src/templates/index.html")
     }),
     new ExtractTextPlugin({
-      filename: "bundle.css"
+      filename: "[name].[md5:contenthash:hex:20].css",
+      allChunks: true
+    }),
+    new webpack.DefinePlugin({
+      "process.env": dotenv.parsed
     }),
     new webpack.LoaderOptionsPlugin({
       test: /\.styl$/,
@@ -124,9 +143,6 @@ module.exports = {
         preferPathResolver: "webpack"
       }
     }),
-    new CopyPlugin([
-      { from: "./public/index.html" }
-    ]),
     new webpack.HotModuleReplacementPlugin({})
   ],
   watch: true,
