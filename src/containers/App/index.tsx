@@ -53,7 +53,7 @@ export class App extends React.Component<Props, {}> {
               <Route render={(): JSX.Element => (
                 <div className="AppInnerWrap">
                   <h1 className="heading" title="This might just have to be an image, because of the border">
-                    DIMENSION <span style={{ letterSpacing: "-4px", margin: "0 0 0 4px" }}>W</span>ARS
+                    DIMENSION <span style={{ letterSpacing: "-2px", margin: "0 0 0 -16px" }}>W</span>ARS
                   </h1>
                   <p style={{ marginTop: "96px", textAlign: "center" }}>Uh oh!</p>
                   <p style={{ marginTop: "32px", textAlign: "center" }}>

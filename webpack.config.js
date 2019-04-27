@@ -1,6 +1,8 @@
 const webpack = require("webpack");
 const path = require("path");
 const dotenv = require('dotenv').config({path: __dirname + "/.env"});
+
+const CopyPlugin = require("copy-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
@@ -17,12 +19,13 @@ module.exports = {
     historyApiFallback: {
       index: "index.html",
     },
-    host: "localhost",
+    host: "0.0.0.0",
     https: true,
     index: "index.html",
     open: true,
     port: 3000,
     public: "localhost:3000",
+    hot: true,
     watchOptions: {
       aggregateTimeout: 500,
       poll: true,
@@ -121,6 +124,10 @@ module.exports = {
         preferPathResolver: "webpack"
       }
     }),
+    new CopyPlugin([
+      { from: "./public/index.html" }
+    ]),
+    new webpack.HotModuleReplacementPlugin({})
   ],
   watch: true,
   watchOptions: {
