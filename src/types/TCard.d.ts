@@ -88,12 +88,14 @@ declare namespace TCard {
     desc: string
   }
 
+  type NoteFace = Note[]
+
   interface Card {
     name:        Name
     art:         Art
     stats:       Stats
     moves:       Moves
-    notes:       Note[]
+    notes:       NoteFace[]
     traits:      Trait[]
     resistances: Resistance[]
   }

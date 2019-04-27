@@ -39,12 +39,12 @@ export const cards: { [card: string]: TCard.Card } = {
         type:        "Special"
       } ],
     },
-    notes: [
+    notes: [ [
       { name: "Blade Absorb",      desc: "Mollit proident incididunt amet et Lorem nostrud proident mollit adipisicing sint amet adipisicing ut veniam." },
       { name: "Heightened Senses", desc: "Elit esse proident do ut pariatur dolor est consequat pariatur." },
       { name: "Tele-Flurry",       desc: "Sunt consectetur fugiat consequat exercitation excepteur velit cillum ipsum deserunt eiusmod exercitation in." },
       { name: "Tele-Push",         desc: "Sit laboris amet voluptate excepteur consectetur pariatur laborum excepteur pariatur dolore voluptate." },
-    ],
+    ] ],
     traits: [ "Revenge" ],
     resistances: [ "Illusion", "Darkness" ]
   }

@@ -46,6 +46,12 @@ module.exports = {
       "error",
       "never"
     ],
+    "no-console": [
+      "error",
+      {
+        "allow": [ "warn", "error" ]
+      }
+    ],
     "@typescript-eslint/explicit-member-accessibility": [
       "error",
       {

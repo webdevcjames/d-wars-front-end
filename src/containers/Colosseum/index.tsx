@@ -2,9 +2,11 @@ import * as React from "react"
 // import { Component as Container } from "react"
 import { RouteComponentProps } from "react-router"
 
-import NavLink from "components/NavLink"
+import chunk from "lodash/chunk"
 
 import BattleStage from "components/BattleStage"
+import NavLink from "components/NavLink"
+
 import Card from "components/Card"
 import CardSet from "components/CardSet"
 import DFactorCardFace from "components/DFactorCardFace"
@@ -44,23 +46,27 @@ export class Colosseum extends React.Component<Props, {}> {
 
 
   public render(): JSX.Element {
+    let cardFaceArray: JSX.Element[] = [
+      <MainCardFace {...kenshi} />,
+      ...kenshi.notes.map((noteFace: TCard.NoteFace, index: number): JSX.Element => 
+        <NotesCardFace key={index} name={kenshi.name} notes={noteFace} traits={kenshi.traits} />),
+      ...kenshi.moves.dFactor.map((dFactor: TCard.DFactor, index: number): JSX.Element => 
+        <DFactorCardFace key={index} name={kenshi.name} dFactor={dFactor} />),
+      <TypesCardFace {...kenshi} />
+    ]
+    if (cardFaceArray.length % 2) cardFaceArray.push(<PlaceholderCardFace />)
+    const cardArray: JSX.Element[] = chunk(cardFaceArray, 2).map((cardFaces: JSX.Element[], index: number): JSX.Element => (
+      <Card key={index}>
+        {cardFaces.map((cardFace: JSX.Element, index: number): JSX.Element => React.cloneElement(cardFace, { key: index }))}
+      </Card>
+    ))
+
     return (
       <div className="AppInnerWrap">
         <BattleStage stage={stages["kahns_colosseum"]}>
           <div className="Battle">
             <CardSet>
-              <Card>
-                <MainCardFace {...kenshi} />
-                <NotesCardFace {...kenshi} />
-              </Card>
-              <Card>
-                {kenshi.moves.dFactor.map((dFactor: TCard.DFactor, index: number): JSX.Element => 
-                  <DFactorCardFace key={index} name={kenshi.name} dFactor={dFactor} />)}
-              </Card>
-              <Card>
-                <TypesCardFace {...kenshi} />
-                <PlaceholderCardFace />
-              </Card>
+              {cardArray}
             </CardSet>
           </div>
 

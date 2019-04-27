@@ -1,7 +1,7 @@
 import * as React from "react"
 // import { Component } from "react"
 
-import { isEmpty } from "lodash"
+import isEmpty from "lodash/isEmpty"
 
 import NavLink from "components/NavLink"
 import NavMenu from "components/NavMenu"

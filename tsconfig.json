@@ -21,6 +21,10 @@
       "stylus/*": [ "src/stylus/*" ],
       "types/*": [ "src/types/*" ],
     },
+    "types": [
+      "node",
+      "lodash"
+    ]
   },
   "include": [ "./src" ],
   "exclude": [ "node_modules", "public" ]
