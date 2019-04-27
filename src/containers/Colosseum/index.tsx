@@ -1,8 +1,10 @@
 import * as React from "react"
 // import { Component as Container } from "react"
+import { RouteComponentProps } from "react-router"
 
 import NavLink from "components/NavLink"
 
+import BattleStage from "components/BattleStage"
 import Card from "components/Card"
 import CardSet from "components/CardSet"
 import DFactorCardFace from "components/DFactorCardFace"
@@ -13,23 +15,27 @@ import TypesCardFace from "components/TypesCardFace"
 
 import TCard from "types/TCard"
 
-import MockData from "constants/MockData"
-
-import BattleBackground from "images/kahns-colosseum-cropped.jpg"
+import { cards, stages } from "constants/MockData"
 
 import "./style"
 
 
 
-const { cards: { kenshi } } = MockData
+interface Props extends RouteComponentProps {
+  children?: JSX.Element[] | JSX.Element | string
+}
 
 
 
-export class Colosseum extends React.Component<{}, {}> {
+const { kenshi } = cards
+
+
+
+export class Colosseum extends React.Component<Props, {}> {
 
   public displayName: string
 
-  public constructor(props: {}) {
+  public constructor(props: Props) {
     super(props)
 
     this.displayName = "Colosseum"
@@ -40,18 +46,8 @@ export class Colosseum extends React.Component<{}, {}> {
   public render(): JSX.Element {
     return (
       <div className="AppInnerWrap">
-        <div className="BattleWrap">
-          <div className="BattleBackgroundWrap">
-            <div className="BattleBackground" style={{ backgroundImage: `url(${BattleBackground})` }} />
-            <div className="BattleGradient" />
-          </div>
-
-          <h1 className="heading" title="This might just have to be an image, because of the border">
-            BATTLE
-          </h1>
-
+        <BattleStage stage={stages["kahns_colosseum"]}>
           <div className="Battle">
-
             <CardSet>
               <Card>
                 <MainCardFace {...kenshi} />
@@ -66,7 +62,6 @@ export class Colosseum extends React.Component<{}, {}> {
                 <PlaceholderCardFace />
               </Card>
             </CardSet>
-
           </div>
 
           <div className="HomeButtons">
@@ -86,7 +81,7 @@ export class Colosseum extends React.Component<{}, {}> {
               </NavLink>
             </div>
           </div>
-        </div>
+        </BattleStage>
       </div>
     )
   }

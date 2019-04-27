@@ -22,3 +22,15 @@ export const menuItems: TNav.Link[] = [
   { link: "/archives",   label: "Archives" },
   { link: "/help",       label: "Help" },
 ]
+
+
+
+export const AppData: { 
+  menuItems: TNav.Link[]
+} = {
+  menuItems
+}
+
+
+
+export default AppData

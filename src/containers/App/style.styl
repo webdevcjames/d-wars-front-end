@@ -14,7 +14,6 @@ a
   position relative
   
   display flex
-  
   flex-direction column
   
   width 100%
@@ -33,16 +32,16 @@ a
 .AppBody
   display flex
   
-  flex 1 0 auto
   flex-direction row
+  flex 1 0 auto
 
 
 
 .AppContent
   display flex
   
-  flex 1 1 auto
   flex-direction column
+  flex 1 1 auto
   
 
 
@@ -63,7 +62,6 @@ t_shadows(blur_r, num)
   
   font-family "Seven Eleven Serif", "Mortal Kombat X", Arial, Helvetica, sans-serif
   font-size 128px
-
   line-height 1.25
   
   letter-spacing 15px
@@ -73,30 +71,29 @@ t_shadows(blur_r, num)
   text-shadow t_shadows(4, 16)
   
   z-index 1
-    
 
+@media screen and (max-width: 2140px)
+  .heading
+    margin-bottom -71px
 
-.Username
-  padding 0 8px
+    font-size 96px
   
-.Avatar
-  box-sizing content-box
+    text-shadow t_shadows(3, 16)
 
-  padding 0 8px
-  
-  height 48px
-  width 48px
+@media screen and (max-width: 1780px)
+  .heading
+    margin-bottom -48px
+
+    font-size 72px
 
 
 
 .AppInnerWrap
   display flex
   
-  flex 1 0 auto
-  
-  flex-direction column
-
-  padding 48px
-  
   align-items center
   justify-content center
+  flex-direction column
+  flex 1 0 auto
+  
+  padding 48px

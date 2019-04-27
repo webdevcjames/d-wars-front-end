@@ -4,23 +4,29 @@ import { Route, Switch } from "react-router-dom"
 
 import AppMenu from "components/AppMenu"
 import Header from "components/Header"
+import UserDetails from "components/UserDetails"
 
 import Colosseum from "containers/Colosseum"
 import Dashboard from "containers/Dashboard"
 
-import { menuItems } from "constants/App"
-
-import Avatar from "images/avatar.png"
+import { menuItems } from "constants/AppData"
+import { users } from "constants/MockData"
 
 import "./style"
 
 
 
-export class App extends React.Component<{}, {}> {
+interface Props {
+  children?: JSX.Element[] | JSX.Element | string
+}
+
+
+
+export class App extends React.Component<Props, {}> {
 
   public displayName: string
 
-  public constructor(props: {}) {
+  public constructor(props: Props) {
     super(props)
 
     this.displayName = "App"
@@ -36,8 +42,7 @@ export class App extends React.Component<{}, {}> {
 
           <div className="AppContent">
             <Header>
-              <div className="Username">Korill Venn</div>
-              <img src={Avatar} className="Avatar"/>
+              <UserDetails user={users["korill_venn"]} />
             </Header>
 
             <Switch>

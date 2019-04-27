@@ -1,5 +1,6 @@
 import * as React from "react"
 // import { Component as Container } from "react"
+import { RouteComponentProps } from "react-router"
 
 import NavLink from "components/NavLink"
 
@@ -9,11 +10,17 @@ import "./style"
 
 
 
-export class Dashboard extends React.Component<{}, {}> {
+interface Props extends RouteComponentProps {
+  children?: JSX.Element[] | JSX.Element | string
+}
+
+
+
+export class Dashboard extends React.Component<Props, {}> {
 
   public displayName: string
 
-  public constructor(props: {}) {
+  public constructor(props: Props) {
     super(props)
 
     this.displayName = "Dashboard"

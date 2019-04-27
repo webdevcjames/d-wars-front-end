@@ -63,6 +63,13 @@ module.exports = {
         }
       }
     ],
+    "camelcase": "off",
+    "@typescript-eslint/camelcase": [
+      "error",
+      {
+        "ignoreDestructuring": true
+      }
+    ],
     "sort-imports": "off",
     "import/order": "off",
     "import-order-alphabetical/order": "off",
