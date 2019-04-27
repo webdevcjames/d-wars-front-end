@@ -8,14 +8,16 @@ import "./style"
 
 
 interface Props extends RouteComponentProps {
-  children: JSX.Element[] | JSX.Element | string
-  onClick?: (callback: () => void) => void
-  to?:      string
+  children:  JSX.Element[] | JSX.Element | string
+  isOpen?:    boolean
+  onClick?:  (callback: () => void) => void
+  onToggle?: () => void
+  to?:       string
 }
 
 
 
-export const NavLink = ({ children, onClick, to }: Props): JSX.Element => (
+export const NavLink = ({ children, isOpen, onClick, onToggle, to }: Props): JSX.Element => (
   <Route render={({ history, location }): JSX.Element => {
     const active = location.pathname === to
     const navigate = (): void => to ? history.push(to) : undefined
@@ -23,14 +25,23 @@ export const NavLink = ({ children, onClick, to }: Props): JSX.Element => (
 
     return (
       <a
-        href={to}
-        className={classNames("NavLink", { active })}
+        href={to || "#"}
+        className={classNames("NavLink", { active }, { toggle: onToggle })}
         onClick={(e): void => {
           e.preventDefault()
-          click()
+          if (!active) click()
         }}
       >
         {children}
+        
+        {onToggle && <div
+          className={classNames("NavToggleIcon", { open: isOpen })}
+          onClick={(e): void => {
+            e.preventDefault()
+            e.stopPropagation()
+            onToggle()
+          }}
+        />}
       </a>
     )
   }}/>

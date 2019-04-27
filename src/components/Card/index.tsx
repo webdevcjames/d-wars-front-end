@@ -21,6 +21,8 @@ export class Card extends React.Component<Props, State> {
 
   public displayName: string
 
+
+
   public constructor(props: Props) {
     super(props)
 

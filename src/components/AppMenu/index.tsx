@@ -1,8 +1,6 @@
 import * as React from "react"
 // import { Component } from "react"
 
-import isEmpty from "lodash/isEmpty"
-
 import NavLink from "components/NavLink"
 import NavMenu from "components/NavMenu"
 import NavMenuItem from "components/NavMenuItem"
@@ -18,7 +16,7 @@ interface Props {
 }
 
 interface State {
-  open?: string
+  open: string[]
 }
 
 
@@ -27,11 +25,13 @@ export class AppMenu extends React.Component<Props, State> {
 
   public displayName: string
 
+
+
   public constructor(props: Props) {
     super(props)
 
     this.state = {
-      open: undefined
+      open: []
     }
 
     this.displayName = "AppMenu"
@@ -39,15 +39,13 @@ export class AppMenu extends React.Component<Props, State> {
 
 
 
-  public openMenu(items: TNav.Link[] | undefined, link: string, navigate: () => void): void {
+  public openMenu(link: string): void {
     const { open } = this.state
 
-    if (link === open || isEmpty(items))
-      navigate()
-    if (link === open && !isEmpty(items)) {
-      this.setState({ open: undefined })
-    } else if (link !== open && !isEmpty(items)) {
-      this.setState({ open: link })
+    if (open.includes(link)) {
+      this.setState({ open: open.filter((openLink): boolean => openLink !== link) })
+    } else {
+      this.setState({ open: [ ...open, link ] })
     }
   }
 
@@ -70,9 +68,13 @@ export class AppMenu extends React.Component<Props, State> {
 
         <div className="AppMenu">
           <NavMenu>
-            {menuItems.map(({ items = [], link, label }, index): JSX.Element => (
-              <NavMenuItem key={index} isOpen={link === open}>
-                <NavLink onClick={(navigate): void => this.openMenu(items, link, navigate)} to={link}>
+            {menuItems.map(({ items, link, label }, index): JSX.Element => (
+              <NavMenuItem key={index} isOpen={open.includes(link)}>
+                <NavLink
+                  isOpen={open.includes(link)}
+                  onToggle={items ? (): void => this.openMenu(link) : undefined}
+                  to={link}
+                >
                   {label}
                 </NavLink>
 
@@ -80,7 +82,7 @@ export class AppMenu extends React.Component<Props, State> {
                   <NavMenu sub>
                     {items.map(({ link, label }, index): JSX.Element => (
                       <NavMenuItem key={index}>
-                        <NavLink onClick={(navigate): void => this.openMenu([], link, navigate)} to={link}>
+                        <NavLink to={link}>
                           {label}
                         </NavLink>
                       </NavMenuItem>

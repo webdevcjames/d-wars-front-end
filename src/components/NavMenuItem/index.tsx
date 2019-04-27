@@ -7,7 +7,7 @@ import "./style"
 
 
 interface Props {
-  children: JSX.Element[] | JSX.Element
+  children: (JSX.Element | undefined)[] | (JSX.Element | undefined)
   isOpen?:  boolean
 }
 

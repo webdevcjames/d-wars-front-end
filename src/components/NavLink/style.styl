@@ -1,8 +1,12 @@
 .NavLink
+  position relative
+
   display flex
   
   align-items center
   justify-content center
+
+  padding 0 16px
   
   height 64px
   
@@ -16,7 +20,7 @@
 
   // text-transform uppercase
 
-  transition color 0.25s, border-bottom-color 0.25s
+  transition color 0.3333s, border-bottom-color 0.3333s
   
   cursor pointer
   
@@ -35,4 +39,52 @@
     border-bottom-color #ef8f1f
 
     cursor default
+
+  &.toggle
+    padding 0 64px
     
+.NavToggleIcon
+  position absolute
+  top -4px
+  right 0
+
+  width 64px
+  height 64px
+
+  cursor pointer
+
+  &:before, &:after
+    content "-"
+    
+    position absolute
+    top 8px
+    right 8px
+    bottom 8px
+    left 8px
+    
+    display flex
+
+    align-items center
+    justify-content center
+
+    color #ef8f1f
+
+    font-family inherit
+    font-size 48px
+    line-height 1
+
+    transform-origin 50% 50%
+    transform rotateZ(0) scale(1, 0.6667)
+
+    transition opacity 0s, transform 0.3333s
+
+  &:after
+    transform rotateZ(90deg) scale(1, 0.6667)
+  
+  &.open
+    &:after
+      opacity 0
+      
+      transform rotateZ(0) scale(1, 0.6667)
+
+      transition opacity 0s 0.3333s, transform 0.3333s
