@@ -4,6 +4,7 @@ const dotenv = require('dotenv').config({path: __dirname + "/.env"});
 
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
@@ -133,6 +134,24 @@ module.exports = {
     new ExtractTextPlugin({
       filename: "[name].[md5:contenthash:hex:20].css",
       allChunks: true
+    }),
+    new FaviconsWebpackPlugin({
+      logo: "assets/images/favicon-default.png",
+      prefix: "[hash]-",
+      persistentCache: true,
+      inject: true,
+      icons: {
+        android: true,
+        appleIcon: true,
+        appleStartup: true,
+        coast: false,
+        favicons: true,
+        firefox: true,
+        opengraph: false,
+        twitter: false,
+        yandex: false,
+        windows: false
+      }
     }),
     new webpack.DefinePlugin({
       "process.env": dotenv.parsed
