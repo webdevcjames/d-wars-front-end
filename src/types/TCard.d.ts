@@ -27,7 +27,7 @@ declare namespace TCard {
   | "Sacrifice"
   | "Deadpool"
   
-  type MoveType =
+  type MoveType = 
   undefined
   | "Blunt"
   | "Projectile"

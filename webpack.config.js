@@ -30,9 +30,7 @@ module.exports = {
   },
   devServer: {
     contentBase: "./public",
-    historyApiFallback: {
-      index: "index.html",
-    },
+    historyApiFallback: true,
     host: "0.0.0.0",
     https: true,
     index: "index.html",
@@ -50,6 +48,7 @@ module.exports = {
       constants: path.resolve(__dirname, "src/constants/"),
       containers: path.resolve(__dirname, "src/containers/"),
       fonts: path.resolve(__dirname, "assets/fonts/"),
+      helpers: path.resolve(__dirname, "src/helpers/"),
       images: path.resolve(__dirname, "assets/images/"),
       stylus: path.resolve(__dirname, "src/stylus/"),
       types: path.resolve(__dirname, "src/types/"),

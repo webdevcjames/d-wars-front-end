@@ -4,6 +4,8 @@ import CardFace from "components/CardFace"
 
 import TCard from "types/TCard"
 
+import { getIcon } from "helpers/icons"
+
 import "./style"
 
 
@@ -43,7 +45,8 @@ export const TypesCardFace = ({ name, moves, resistances }: Props): JSX.Element 
                     <div
                       key={`${colIndex}${rowIndex}`}
                       className="CardMoveType"
-                      style={{ backgroundImage: moveType ? `url(${moveType})` : "" }}
+                      title={moveType}
+                      style={{ backgroundImage: moveType ? `url(${getIcon(moveType)})` : "" }}
                     />
                   )}
                 </div>
@@ -53,7 +56,11 @@ export const TypesCardFace = ({ name, moves, resistances }: Props): JSX.Element 
             <div className="CardResistances">
               {paddedResistances.map((resistance, index): JSX.Element =>
                 <div key={index} className="CardResistanceCol">
-                  <div className="CardResistance" style={{ backgroundImage: resistance ? `url(${resistance})` : "" }} />
+                  <div
+                    className="CardResistance"
+                    title={resistance}
+                    style={{ backgroundImage: resistance ? `url(${getIcon(resistance)})` : "" }}
+                  />
                 </div>
               )}
             </div>

@@ -17,6 +17,7 @@
       "constants/*": [ "src/constants/*" ],
       "containers/*": [ "src/containers/*" ],
       "fonts/*": [ "assets/fonts/*" ],
+      "helpers/*": [ "src/helpers/*" ],
       "images/*": [ "assets/images/*" ],
       "stylus/*": [ "src/stylus/*" ],
       "types/*": [ "src/types/*" ],

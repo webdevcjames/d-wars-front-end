@@ -88,9 +88,6 @@
 .CardMove
   height 51px
   
-  font-size 21px
-  line-height 22px
-
   &:nth-last-child(2)
     padding 1px 28px 0
   
@@ -103,8 +100,27 @@
   span
     display inline-block
 
+    font-size 21px
+    line-height 22px
+
     white-space nowrap
+
+  .CardMoveSubName
+    font-size 21px
+    line-height 18px
+  
+    border-width 2px 0
+    border-style solid
+    border-color transparent
+
+    transition border-color 0.3333s
+
+    &:hover
+      border-color transparent transparent currentColor
 
 .CardMoveValue
   flex 0 1 auto
+
+  font-size 21px
+  line-height 22px
   
