@@ -9,7 +9,8 @@ import "./style"
 
 interface Props extends RouteComponentProps {
   children:  JSX.Element[] | JSX.Element | string
-  isOpen?:    boolean
+  hover?:    boolean 
+  isOpen?:   boolean
   onClick?:  (callback: () => void) => void
   onToggle?: () => void
   to?:       string
@@ -17,7 +18,7 @@ interface Props extends RouteComponentProps {
 
 
 
-export const NavLink = ({ children, isOpen, onClick, onToggle, to }: Props): JSX.Element => (
+export const NavLink = ({ children, hover, isOpen, onClick, onToggle, to }: Props): JSX.Element => (
   <Route render={({ history, location }): JSX.Element => {
     const active = location.pathname === to
     const navigate = (): void => to ? history.push(to) : undefined
@@ -26,13 +27,15 @@ export const NavLink = ({ children, isOpen, onClick, onToggle, to }: Props): JSX
     return (
       <a
         href={to || "#"}
-        className={classNames("NavLink", { active }, { toggle: onToggle })}
+        className={classNames("NavLink", { active }, { toggle: onToggle }, { hover })}
         onClick={(e): void => {
           e.preventDefault()
           if (!active) click()
         }}
       >
-        {children}
+        {hover && <div className="NavLinkHover" />}
+
+        <div className="NavLinkContent">{children}</div>
         
         {onToggle && <div
           className={classNames("NavToggleIcon", { open: isOpen })}

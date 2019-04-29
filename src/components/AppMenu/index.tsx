@@ -54,6 +54,7 @@ export class AppMenu extends React.Component<Props, State> {
     return items.map(({ items, link, label }, index): JSX.Element => (
       <NavMenuItem key={index} isOpen={open.includes(link)}>
         <NavLink
+          hover
           isOpen={open.includes(link)}
           onToggle={items ? (): void => this.openMenu(link) : undefined}
           to={link}
