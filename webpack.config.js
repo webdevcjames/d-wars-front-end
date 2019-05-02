@@ -29,6 +29,9 @@ module.exports = {
     }
   },
   devServer: {
+    allowedHosts: [
+      "http://triggertortoise.com/"
+    ],
     contentBase: "./public",
     historyApiFallback: true,
     host: "0.0.0.0",
@@ -45,13 +48,13 @@ module.exports = {
   resolve: {
     alias: {
       components: path.resolve(__dirname, "src/components/"),
-      constants: path.resolve(__dirname, "src/constants/"),
+      constants:  path.resolve(__dirname, "src/constants/"),
       containers: path.resolve(__dirname, "src/containers/"),
-      fonts: path.resolve(__dirname, "assets/fonts/"),
-      helpers: path.resolve(__dirname, "src/helpers/"),
-      images: path.resolve(__dirname, "assets/images/"),
-      stylus: path.resolve(__dirname, "src/stylus/"),
-      types: path.resolve(__dirname, "src/types/"),
+      fonts:      path.resolve(__dirname, "assets/fonts/"),
+      helpers:    path.resolve(__dirname, "src/helpers/"),
+      images:     path.resolve(__dirname, "assets/images/"),
+      stylus:     path.resolve(__dirname, "src/stylus/"),
+      types:      path.resolve(__dirname, "src/types/"),
     },
     extensions: [ ".ts", ".tsx", ".js", ".jsx", ".styl", ".jpg", ".png" ],
     plugins: [
