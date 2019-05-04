@@ -6,8 +6,8 @@ import "./style"
 
 
 
-export const PlaceholderCardFace = (): JSX.Element => (
-  <CardFace type="Placeholder">
+export const PlaceholderCardFace = ({ ...CardFaceProps }): JSX.Element => (
+  <CardFace {...CardFaceProps} type="Placeholder">
     <div className="CardFill" />
     
     <div className="CardDetails">

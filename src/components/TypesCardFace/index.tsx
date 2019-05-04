@@ -18,7 +18,7 @@ interface Props {
 
 
 
-export const TypesCardFace = ({ name, moves, resistances }: Props): JSX.Element => {
+export const TypesCardFace = ({ name, moves, resistances, ...CardFaceProps }: Props): JSX.Element => {
   let maxMoveTypeColLen = 2
   const moveMatrix: ({ type: TCard.MoveType }[])[] = Object.values(moves)
   moveMatrix.forEach((move: { type: TCard.MoveType }[]): void => {
@@ -29,7 +29,7 @@ export const TypesCardFace = ({ name, moves, resistances }: Props): JSX.Element 
   const paddedResistances = resistances.concat((new Array(resistancePadding)).fill(undefined))
   
   return (
-    <CardFace type="Types">
+    <CardFace {...CardFaceProps} type="Types">
       <div className="CardFill" />
       
       <div className="CardDetails">

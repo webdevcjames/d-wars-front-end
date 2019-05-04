@@ -16,8 +16,8 @@ interface Props {
 
 
 
-export const NotesCardFace = ({ name, notes, traits }: Props): JSX.Element => (
-  <CardFace type="Notes">
+export const NotesCardFace = ({ name, notes, traits, ...CardFaceProps }: Props): JSX.Element => (
+  <CardFace {...CardFaceProps} type="Notes">
     <div className="CardFill" />
     
     <div className="CardDetails">

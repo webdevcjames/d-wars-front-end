@@ -24,7 +24,8 @@
     },
     "types": [
       "node",
-      "lodash"
+      "lodash",
+      "mdi-react"
     ]
   },
   "include": [ "./src" ],

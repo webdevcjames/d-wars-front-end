@@ -1,30 +1,33 @@
-.CardWrap, .Card
-  position relative
+.Card
+  &, &__Inner
+    position relative
+    
+    width 320px
 
-  display block
+  padding 36px 0
 
-  width 320px
-  height 500px
+  height 572px
 
-.CardWrap
   color #0f0f0f
 
   filter drop-shadow(4px 4px 4px)
 
-.Card
-  transform-origin 50% 50% 1px
-  transition transform 0.5s
+  &__Inner
+    height 500px
 
-  transform-style preserve-3d
+    transform-origin 50% 50% 1px
+    transition transform 0.5s
 
-  // perspective 1000
+    transform-style preserve-3d
 
-  cursor pointer
+    // perspective 1000
 
-  &.flip
-    transform rotateY(180deg)
+    transform rotateY(0deg)
 
-  .CardFace
+    &--Flipped
+      transform rotateY(180deg)
+
+  & &__Face
     position absolute
     top 0
     left 0
@@ -36,3 +39,44 @@
 
     &:last-child
       transform translateZ(2px) rotateY(180deg)
+
+  &__Flip
+    position absolute
+    bottom 0
+    left 0
+
+    display flex
+
+    align-items center
+    justify-content center
+
+    width 100%
+    height 36px
+
+    opacity 0
+
+    transition opacity 0.3333s
+
+    cursor pointer
+
+    &:hover
+      .Card__FlipIcon
+        transform rotateZ(-20deg)
+
+  &__FlipIcon
+    display block
+
+    flex 0 0 auto
+
+    background-color #1f1f1f
+
+    border-radius 50%
+
+    color #efefef
+
+    transform-origin 50% 50%
+    transition transform 0.3333s ease-in-out
+
+  &:hover
+    .Card__Flip
+      opacity 1
