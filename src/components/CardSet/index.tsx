@@ -2,6 +2,8 @@ import * as React from "react"
 
 import CardContext from "contexts/CardContext"
 
+import ChevronDoubleRightIcon from "mdi-react/ChevronDoubleRightIcon"
+
 import TCard from "types/TCard"
 import TReact from "types/TReact"
 
@@ -21,11 +23,7 @@ export const CardSet: React.SFC<CardSetProps> = ({ card, children }): JSX.Elemen
 
   return (
     <CardContext.Provider value={card}>
-      <div
-        className="CardSet"
-        onMouseOut={(): void => setXTranslation(0)}
-        onMouseOver={(): void => setXTranslation(275)}
-      >
+      <div className="CardSet">
         {children.map((child, index): JSX.Element => (
           <div
             key={index}
@@ -38,6 +36,18 @@ export const CardSet: React.SFC<CardSetProps> = ({ card, children }): JSX.Elemen
             {child}
           </div>
         ))}
+        <div
+          className={`CardSet__Toggle${xTranslation ? " CardSet__Toggle--Expanded" : ""}`}
+          onClick={(): void => setXTranslation(!xTranslation ? 275 : 0)}
+          style={{
+            transform: `translateX(${(70 * (children.length - 1)) + 50 + (xTranslation * children.length)}px)`,
+            zIndex: children.length * -1
+          }}
+        >
+          <div className="CardSet__ToggleInner">
+            <ChevronDoubleRightIcon className="CardSet__ToggleIcon" />
+          </div>
+        </div>
       </div>
     </CardContext.Provider>
   )
