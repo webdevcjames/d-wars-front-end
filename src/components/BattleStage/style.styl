@@ -1,4 +1,4 @@
-.BattleWrap
+.BattleStage
   position relative
 
   display flex
@@ -13,38 +13,39 @@
   border-style solid
   border-color #ef8f1f
 
-  .heading
+  &__Heading
     margin 0
+    padding-top 14px
 
-.BattleBackgroundWrap
-  position absolute
-  
-  top 0
-  right 0
-  bottom 0
-  left 0
+  &__BackgroundWrap
+    position absolute
+    
+    top 0
+    right 0
+    bottom 0
+    left 0
 
-  overflow hidden
+    overflow hidden
 
-.BattleBackground
-  display block
-  
-  width 100%
-  height 100%
+  &__Background
+    display block
+    
+    width 100%
+    height 100%
 
-  background-position 50% 50%
-  background-repeat no-repeat
-  background-size cover
+    background-position 50% 50%
+    background-repeat no-repeat
+    background-size cover
 
-  filter blur(4px)
+    filter blur(4px)
 
-.BattleGradient
-  position absolute
-  
-  top 0
-  right 0
-  bottom 0
-  left 0
-  
-  background-image linear-gradient(to right, rgba(15, 15, 15, 1) 0%, rgba(15, 15, 15, 0) 25%, rgba(15, 15, 15, 0) 75%, rgba(15, 15, 15, 1) 100%)
+  &__Gradient
+    position absolute
+    
+    top 0
+    right 0
+    bottom 0
+    left 0
+    
+    background-image linear-gradient(to right, rgba(15, 15, 15, 1) 0%, rgba(15, 15, 15, 0) 25%, rgba(15, 15, 15, 0) 75%, rgba(15, 15, 15, 1) 100%)
 

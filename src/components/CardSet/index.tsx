@@ -1,54 +1,37 @@
 import * as React from "react"
-// import { Component } from "react"
+
+import CardContext from "contexts/CardContext"
+
+import TCard from "types/TCard"
+import TReact from "types/TReact"
 
 import "./style"
 
 
 
-interface Props {
+interface CardSetProps {
+  card:     TCard.Card
   children: JSX.Element[]
 }
 
-interface State {
-  translation: number
-}
 
 
+export const CardSet: React.SFC<CardSetProps> = ({ card, children }): JSX.Element => {
+  const [ xTranslation, setXTranslation ]: TReact.State<number> = React.useState(0)
 
-export class CardSet extends React.Component<Props, State> {
-
-  public displayName: string
-
-
-
-  public constructor(props: Props) {
-    super(props)
-
-    this.state = {
-      translation: 0
-    }
-
-    this.displayName = "CardSet"
-  }
-
-
-
-  public render(): JSX.Element {
-    const { children } = this.props
-    const { translation } = this.state
-
-    return (
+  return (
+    <CardContext.Provider value={card}>
       <div
         className="CardSet"
-        onMouseOut={(): void => this.setState({ translation: 0 })}
-        onMouseOver={(): void => this.setState({ translation: 275 })}
+        onMouseOut={(): void => setXTranslation(0)}
+        onMouseOver={(): void => setXTranslation(275)}
       >
-        {children.map((child: JSX.Element, index: number): JSX.Element => (
+        {children.map((child, index): JSX.Element => (
           <div
             key={index}
-            className="CardPlacer"
+            className="CardSet__Placer"
             style={{
-              transform: `translateX(${(70 * index) + (translation * index)}px)`,
+              transform: `translateX(${(70 * index) + (xTranslation * index)}px)`,
               zIndex: index * -1
             }}
           >
@@ -56,9 +39,13 @@ export class CardSet extends React.Component<Props, State> {
           </div>
         ))}
       </div>
-    )
-  }
+    </CardContext.Provider>
+  )
 }
+
+
+
+CardSet.displayName = "CardSet"
 
 
 

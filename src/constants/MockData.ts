@@ -12,6 +12,25 @@ export const cards: { [card: string]: TCard.Card } = {
   kenshi: {
     name:  "Kenshi",
     art:   Kenshi,
+    color: {
+      text: "#c91a1e",
+      bg:   "#0f0f0f",
+      borderSolid: "#c91a1e",
+      borderGradient: {
+        angle: 30,
+        stops: [
+          { position: "0%",   color: "rgba(87, 7, 7, 0.9)" },
+          { position: "5%",   color: "rgba(87, 7, 7, 0.9)" },
+          { position: "30%",  color: "rgba(245, 69, 63, 0.9)" },
+          { position: "55%",  color: "rgba(186, 15, 9, 0.9)" },
+          { position: "60%",  color: "rgba(186, 15, 9, 0.9)" },
+          { position: "65%",  color: "rgba(186, 15, 9, 0.9)" },
+          { position: "80%",  color: "rgba(243, 28, 20, 0.9)" },
+          { position: "95%",  color: "rgba(87, 7, 7, 0.9)" },
+          { position: "100%", color: "rgba(87, 7, 7, 0.9)" }
+        ]
+      },
+    },
     stats: {
       class: "Melee",
       health: "25"

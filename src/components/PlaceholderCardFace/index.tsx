@@ -1,14 +1,19 @@
 import * as React from "react"
 
 import CardFace from "components/CardFace"
+import CardFill from "components/CardFill"
 
 import "./style"
 
 
 
-export const PlaceholderCardFace = ({ ...CardFaceProps }): JSX.Element => (
+type PlaceholderCardFaceProps = object
+
+
+
+export const PlaceholderCardFace: React.SFC<PlaceholderCardFaceProps> = ({ ...CardFaceProps }): JSX.Element => (
   <CardFace {...CardFaceProps} type="Placeholder">
-    <div className="CardFill" />
+    <CardFill />
     
     <div className="CardDetails">
       <div className="CardPlaceholderContainer">

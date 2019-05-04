@@ -1,40 +1,46 @@
 import * as React from "react"
 
 import CardFace from "components/CardFace"
+import CardFill from "components/CardFill"
 
-import TCard from "types/TCard"
+import CardContext from "contexts/CardContext"
 
 import "./style"
 
 
 
-interface Props {
-  name: TCard.Name
-  dFactor: TCard.DFactor
+interface DFactorCardFaceProps {
+  children?: JSX.Element[] | JSX.Element | string
+  index:     number
 }
 
 
 
-export const DFactorCardFace = ({ name, dFactor: { title, dFactorType, desc }, ...CardFaceProps }: Props): JSX.Element => (
-  <CardFace {...CardFaceProps} type="DFactor">
-    <div className="CardFill" />
-    
-    <div className="CardDetails">
-      <div className="CardName">{name}</div>
+export const DFactorCardFace: React.SFC<DFactorCardFaceProps> = ({ index , ...CardFaceProps }): JSX.Element => {
+  const { name, moves: { dFactor } } = React.useContext(CardContext)
+  const { title, dFactorType, desc } = dFactor[index]
 
-      <div className="CardDFactorContainer">
-        <div className="CardDFactor">
-          <div className="CardDFactorLead">
-            <div className="CardDFactorHeading">D-Factor</div>
-            <div className="CardDFactorTitle">{title}</div>
+  return (
+    <CardFace {...CardFaceProps} type="DFactor">
+      <CardFill />
+      
+      <div className="CardDetails">
+        <div className="CardName">{name}</div>
+  
+        <div className="CardDFactorContainer">
+          <div className="CardDFactor">
+            <div className="CardDFactorLead">
+              <div className="CardDFactorHeading">D-Factor</div>
+              <div className="CardDFactorTitle">{title}</div>
+            </div>
+            <div className="CardDFactorType">{dFactorType}</div>
+            <div className="CardDFactorDesc">{desc}</div>
           </div>
-          <div className="CardDFactorType">{dFactorType}</div>
-          <div className="CardDFactorDesc">{desc}</div>
         </div>
       </div>
-    </div>
-  </CardFace>
-)
+    </CardFace>
+  )
+}
 
 
 

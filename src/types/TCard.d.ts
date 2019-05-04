@@ -1,3 +1,5 @@
+import TColor from "types/TColor"
+
 declare namespace TCard {
   type Type =
   undefined
@@ -58,8 +60,15 @@ declare namespace TCard {
 
   type Art = string
 
+  interface Color {
+    text?: string
+    bg?:   string
+    borderSolid?:    string
+    borderGradient?: TColor.Gradient
+  }
+
   interface Stats {
-    class: Class
+    class:  Class
     health: string
   }
 
@@ -93,6 +102,7 @@ declare namespace TCard {
   interface Card {
     name:        Name
     art:         Art
+    color:       Color
     stats:       Stats
     moves:       Moves
     notes:       NoteFace[]

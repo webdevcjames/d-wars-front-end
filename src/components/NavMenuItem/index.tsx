@@ -1,20 +1,19 @@
 import * as React from "react"
 
-import classNames from "classnames"
-
 import "./style"
 
 
 
-interface Props {
+interface NavMenuItemProps {
   children: (JSX.Element | undefined)[] | (JSX.Element | undefined)
   isOpen?:  boolean
+  sub?:     boolean
 }
 
 
 
-export const NavMenuItem = ({ children, isOpen }: Props): JSX.Element =>
-  <li className={classNames("NavMenuItem", { open: isOpen })}>{children}</li>
+export const NavMenuItem: React.SFC<NavMenuItemProps> = ({ children, isOpen, sub }): JSX.Element =>
+  <li className={`NavMenuItem${sub ? " NavMenuItem--Sub" : ""}${isOpen ? " NavMenuItem--Open" : ""}`}>{children}</li>
 
 
 

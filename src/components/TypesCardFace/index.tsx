@@ -1,6 +1,9 @@
 import * as React from "react"
 
 import CardFace from "components/CardFace"
+import CardFill from "components/CardFill"
+
+import CardContext from "contexts/CardContext"
 
 import TCard from "types/TCard"
 
@@ -10,15 +13,15 @@ import "./style"
 
 
 
-interface Props {
-  name:        TCard.Name
-  moves:       TCard.Moves
-  resistances: TCard.Resistance[]
+interface TypesCardFaceProps {
+  children?: JSX.Element[] | JSX.Element | string
 }
 
 
 
-export const TypesCardFace = ({ name, moves, resistances, ...CardFaceProps }: Props): JSX.Element => {
+export const TypesCardFace: React.SFC<TypesCardFaceProps> = ({ ...CardFaceProps }): JSX.Element => {
+  const { name, moves, resistances } = React.useContext(CardContext)
+
   let maxMoveTypeColLen = 2
   const moveMatrix: ({ type: TCard.MoveType }[])[] = Object.values(moves)
   moveMatrix.forEach((move: { type: TCard.MoveType }[]): void => {
@@ -30,7 +33,7 @@ export const TypesCardFace = ({ name, moves, resistances, ...CardFaceProps }: Pr
   
   return (
     <CardFace {...CardFaceProps} type="Types">
-      <div className="CardFill" />
+      <CardFill />
       
       <div className="CardDetails">
         <div className="CardName">{name}</div>

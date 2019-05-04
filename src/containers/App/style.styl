@@ -1,99 +1,42 @@
 @import "../../stylus/main.styl"
 
-a
-  color inherit
-  
-  text-decoration none
-  
-  &:hover
-    color inherit
-
-
-
-.AppContainer
+.App
   position relative
-  
+
   display flex
   flex-direction column
-  
+
   width 100%
   height 100%
-  
+
   background-color #0f0f0f
-  
+
   color #efefef
-  
+
   font-family "Pink Blue", Arial, Helvetica, sans-serif
   font-size 14px
   font-weight 400
-  
+
   overflow-y auto
 
-.AppBody
-  display flex
-  
-  flex-direction row
-  flex 1 0 auto
+  &__Body
+    display flex
 
+    flex-direction row
+    flex 1 0 auto
 
+  &__Content
+    display flex
 
-.AppContent
-  display flex
-  
-  flex-direction column
-  flex 1 1 auto
-  
+    flex-direction column
+    flex 1 1 auto
 
+  &__ContentInner
+    display flex
 
-t_shadows(blur_r, num)
-  buf = "0 0 " + blur_r + "px #0f0f0f"
-  for $i in 1..num - 1
-    buf += ", 0 0 " + blur_r + "px #0f0f0f"
-  unquote(buf)
+    align-items center
+    justify-content center
+    flex-direction column
+    flex 1 0 auto
 
-.heading
-  position relative
-  
-  margin-bottom -93px
-
-  padding 0
-  
-  color #ef8f1f
-  
-  font-family "Seven Eleven Serif", "Mortal Kombat X", Arial, Helvetica, sans-serif
-  font-size 128px
-  line-height 1.25
-  
-  letter-spacing 15px
-  
-  text-align center
-  
-  text-shadow t_shadows(4, 16)
-  
-  z-index 1
-
-@media screen and (max-width: 2140px)
-  .heading
-    margin-bottom -71px
-
-    font-size 96px
-  
-    text-shadow t_shadows(3, 16)
-
-@media screen and (max-width: 1780px)
-  .heading
-    margin-bottom -48px
-
-    font-size 72px
-
-
-
-.AppInnerWrap
-  display flex
-  
-  align-items center
-  justify-content center
-  flex-direction column
-  flex 1 0 auto
-  
-  padding 48px
+    padding 48px

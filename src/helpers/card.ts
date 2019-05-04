@@ -13,7 +13,7 @@ export interface CardState {
 
 
 // getDraggedState is shelved for now
-const getDraggedState = (e: React.MouseEvent, state: CardState): CardState => {
+export const getDraggedState = (e: React.MouseEvent, state: CardState): CardState => {
   const {
     clickOriginX: stateClickOriginX,
     flip: stateFlip,
@@ -39,5 +39,5 @@ const getDraggedState = (e: React.MouseEvent, state: CardState): CardState => {
     return { clickOriginX, flip, rotation }
   }
 
-    return state;
+  return state
 }

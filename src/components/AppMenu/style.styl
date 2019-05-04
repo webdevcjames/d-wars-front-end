@@ -1,4 +1,4 @@
-.AppMenuContainer
+.AppMenu
   display flex
   
   flex 0 0 auto
@@ -7,30 +7,18 @@
   width 360px
   
   background-color #2f2f2f
-  
-  h2
-    text-align center
 
-.AppMenu
-  display flex
-  
-  flex 1 1 auto
-  
-  flex-direction column
-  
-  padding 16px 8px
+  &__Header
+    display flex
+    
+    align-items center
+    justify-content center
+    
+    height 128px
 
-.AppMenuHeader
-  display flex
-  
-  align-items center
-  justify-content center
-  
-  height 128px
-
-  background-color #3f3f3f
-  
-  h1
+    background-color #3f3f3f
+    
+  &__Heading
     color #ef8f1f
     
     font-family "Lazer84", Arial, Helvetica, sans-serif
@@ -42,3 +30,17 @@
 
     transform-origin 50% 50%
     transform rotateZ(-5deg)
+
+    cursor pointer
+
+    &--Active
+      cursor default
+
+  &__Content
+    display flex
+    
+    flex 1 1 auto
+    
+    flex-direction column
+    
+    padding 16px 8px

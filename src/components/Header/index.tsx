@@ -1,48 +1,29 @@
 import * as React from "react"
-// import { Component } from "react"
-
-import classNames from "classnames"
 
 import "./style"
 
 
 
-interface Props {
+interface HeaderProps {
   children:   JSX.Element[] | JSX.Element
   className?: string
-  id?: 			 string
+  id?: 		    string
 }
 
 
 
-export class Header extends React.Component<Props, {}> {
-
-  public displayName: string
-
-
-
-  public constructor(props: Props) {
-    super(props)
-
-    this.state = {}
-
-    this.displayName = "Header"
-  }
+export const Header: React.SFC<HeaderProps> = ({ children, className, id }): JSX.Element => (
+  <div
+    className={`Header${className ? ` ${className}` : ""}`}
+    id={id}
+  >
+    {children}
+  </div>
+)
 
 
 
-  public render(): JSX.Element {
-    const { children, className, id } = this.props
-    return (
-      <div
-        className={classNames("HeaderContainer", className)}
-        id={id}
-      >
-        {children}
-      </div>
-    )
-  }
-}
+Header.displayName = "Header"
 
 
 

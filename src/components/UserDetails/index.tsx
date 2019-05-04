@@ -6,37 +6,22 @@ import "./style"
 
 
 
-interface Props {
+interface UserDetailsProps {
   user: TUser.User
 }
 
 
 
-export class UserDetails extends React.Component<Props, {}> {
-
-  public displayName: string
-
-
-
-  public constructor(props: Props) {
-    super(props)
-
-    this.displayName = "UserDetails"
-  }
+export const UserDetails: React.SFC<UserDetailsProps> = ({ user: { displayName, avatar } }): JSX.Element => (
+  <React.Fragment>
+    <div className="UserDetails__Username">{displayName}</div>
+    <img className="UserDetails__Avatar" src={avatar} />
+  </React.Fragment>
+)
 
 
 
-  public render(): JSX.Element {
-    const { user: { displayName, avatar } } = this.props
-
-    return (
-      <React.Fragment>
-        <div className="Username">{displayName}</div>
-        <img className="Avatar" src={avatar} />
-      </React.Fragment>
-    )
-  }
-}
+UserDetails.displayName = "UserDetails"
 
 
 

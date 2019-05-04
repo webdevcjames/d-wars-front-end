@@ -1,56 +1,37 @@
 import * as React from "react"
 
+import MainHeading from "components/MainHeading"
+
 import TStage from "types/TStage"
 
 import "./style"
 
 
 
-interface Props {
+interface BattleStageProps {
   children: JSX.Element[] | JSX.Element | string
   stage:    TStage.Stage
 }
 
 
 
-export class Colosseum extends React.Component<Props, {}> {
+export const BattleStage: React.SFC<BattleStageProps> = ({ children, stage: { art } }): JSX.Element => (
+  <div className="BattleStage">
+    <div className="BattleStage__BackgroundWrap">
+      <div className="BattleStage__Background" style={{ backgroundImage: `url(${art})` }} />
+      <div className="BattleStage__Gradient" />
+    </div>
 
-  public displayName: string
+    <MainHeading className="BattleStage__Heading">BATTLE</MainHeading>
 
-
-
-  public constructor(props: Props) {
-    super(props)
-
-    this.displayName = "Colosseum"
-  }
-
-
-
-  public render(): JSX.Element {
-    const { children, stage: { art } } = this.props
-
-    return (
-      <div className="BattleWrap">
-        <div className="BattleBackgroundWrap">
-          <div className="BattleBackground" style={{ backgroundImage: `url(${art})` }} />
-          <div className="BattleGradient" />
-        </div>
-
-        <h1
-          className="heading"
-          title="This might just have to be an image, because of the border"
-          style={{ paddingTop: "14px" }}
-        >
-          BATTLE
-        </h1>
-
-        {children}
-      </div>
-    )
-  }
-}
+    {children}
+  </div>
+)
 
 
 
-export default Colosseum
+BattleStage.displayName = "BattleStage"
+
+
+
+export default BattleStage

@@ -23,8 +23,21 @@
   transition color 0.3333s, border-bottom-color 0.3333s
   
   cursor pointer
+
+  &--Hover
+    &:hover
+      .NavLink__Hover
+        opacity 1
   
-  .SubNavMenu &
+  &--Active
+    &, &:hover
+      color #ef8f1f
+    
+    border-bottom-color #ef8f1f
+
+    cursor default
+  
+  &--Sub
     height 48px
     
     background-color #1f1f1f
@@ -32,21 +45,11 @@
     border-color #1f1f1f
     
     font-size 20px
-  
-  &.active
-    color #ef8f1f
-    
-    border-bottom-color #ef8f1f
 
-    cursor default
-
-  &.toggle
+  &--Toggle
     padding 0 64px
 
-  .NavLinkContent
-    position relative
-
-  .NavLinkHover
+  &__Hover
     position absolute
     top -4px
     right 0
@@ -55,58 +58,60 @@
 
     opacity 0
     
-    background-color rgba(55, 55, 55, 0.5)
-    background-image linear-gradient(to top, rgba(239, 143, 31, 0.25) 0%, rgba(239, 143, 31, 0) 66.6667%, rgba(239, 143, 31, 0) 100%)
+    background-color #3737377f
+    background-image linear-gradient(to top, #ef8f1f3f 0%, #ef8f1f00 66.6667%, #ef8f1f00 100%)
 
     transition opacity 0.3333s
 
-  &.hover
-    &:hover
-      .NavLinkHover
-        opacity 1
+  &--Sub &__Hover
+    background-color #1717177f
+    background-image linear-gradient(to top, #ef8f1f1f 0%, #ef8f1f00 66.6667%, #ef8f1f00 100%)
+
+  &__Content
+    position relative
     
-.NavToggleIcon
-  position absolute
-  top -4px
-  right 0
-
-  width 64px
-  height 64px
-
-  cursor pointer
-
-  &:before, &:after
-    content "-"
-    
+  &__ToggleIcon
     position absolute
-    top 8px
-    right 8px
-    bottom 8px
-    left 8px
-    
-    display flex
+    top -4px
+    right 0
 
-    align-items center
-    justify-content center
+    width 64px
+    height 64px
 
-    color #ef8f1f
+    cursor pointer
 
-    font-family inherit
-    font-size 48px
-    line-height 1
-
-    transform-origin 50% 50%
-    transform rotateZ(0) scale(1, 0.6667)
-
-    transition opacity 0s, transform 0.3333s
-
-  &:after
-    transform rotateZ(-90deg) scale(1, 0.6667)
-  
-  &.open
-    &:after
-      opacity 0
+    &:before, &:after
+      content "-"
       
+      position absolute
+      top 8px
+      right 8px
+      bottom 8px
+      left 8px
+      
+      display flex
+
+      align-items center
+      justify-content center
+
+      color #ef8f1f
+
+      font-family inherit
+      font-size 48px
+      line-height 1
+
+      transform-origin 50% 50%
       transform rotateZ(0) scale(1, 0.6667)
 
-      transition opacity 0s 0.3333s, transform 0.3333s
+      transition opacity 0s, transform 0.3333s
+
+    &:after
+      transform rotateZ(-90deg) scale(1, 0.6667)
+    
+    &--Open
+      &:after
+        opacity 0
+        
+        transform rotateZ(0) scale(1, 0.6667)
+
+        transition opacity 0s 0.3333s, transform 0.3333s

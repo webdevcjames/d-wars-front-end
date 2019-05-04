@@ -2,6 +2,8 @@ import * as React from "react"
 
 import Rotate3dIcon from "mdi-react/Rotate3dIcon"
 
+import TReact from "types/TReact"
+
 import "./style"
 
 
@@ -13,12 +15,12 @@ interface CardProps {
 
 
 export const Card: React.SFC<CardProps> = ({ children }): JSX.Element => {
-  const [ flip, setFlip ] = React.useState(false)
+  const [ flip, setFlip ]: TReact.State<boolean> = React.useState(false)
     
   return (
     <div className="Card">
       <div className={`Card__Inner${flip ? " Card__Inner--Flipped" : ""}`}>
-        {children.map((child): JSX.Element => React.cloneElement(child, { classNames: "Card__Face" }))}
+        {children.map((child): JSX.Element => React.cloneElement(child, { className: "Card__Face" }))}
       </div>
       <div className="Card__Flip" onClick={(): void => setFlip(!flip)}>
         <Rotate3dIcon className="Card__FlipIcon" size={28} />

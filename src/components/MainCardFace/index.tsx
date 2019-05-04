@@ -2,7 +2,10 @@ import * as React from "react"
 
 import flatten from "lodash/flatten"
 
+import CardArt from "components/CardArt"
 import CardFace from "components/CardFace"
+
+import CardContext from "contexts/CardContext"
 
 import TCard from "types/TCard"
 
@@ -11,15 +14,14 @@ import "./style"
 
 
 interface MainCardFaceProps {
-  name:  TCard.Name
-  art:   TCard.Art
-  stats: TCard.Stats
-  moves: TCard.Moves
+  children?: JSX.Element[] | JSX.Element | string
 }
 
 
 
-export const MainCardFace: React.SFC<MainCardFaceProps> = ({ art, name, stats, moves, ...CardFaceProps }): JSX.Element => {
+export const MainCardFace: React.SFC<MainCardFaceProps> = ({ ...CardFaceProps }): JSX.Element => {
+  const { art, name, stats, moves } = React.useContext(CardContext)
+  
   const renderMove = (moveName: string): JSX.Element => (
     <span
       className="CardMoveSubName"
@@ -34,9 +36,7 @@ export const MainCardFace: React.SFC<MainCardFaceProps> = ({ art, name, stats, m
 
   return (
     <CardFace {...CardFaceProps}>
-      <div className="CardArt" style={{ backgroundImage: `url(${art})` }}>
-        <div className="CardFill" />
-      </div>
+      <CardArt art={art} />
       
       <div className="CardDetails">
         <div className="CardName">{name}</div>

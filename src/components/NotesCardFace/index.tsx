@@ -1,47 +1,52 @@
 import * as React from "react"
 
 import CardFace from "components/CardFace"
+import CardFill from "components/CardFill"
 
-import TCard from "types/TCard"
+import CardContext from "contexts/CardContext"
 
 import "./style"
 
 
 
-interface Props {
-  name:   TCard.Name
-  notes:  TCard.Note[]
-  traits: TCard.Trait[]
+interface NotesCardFaceProps {
+  children?: JSX.Element[] | JSX.Element | string
+  index:     number
 }
 
 
 
-export const NotesCardFace = ({ name, notes, traits, ...CardFaceProps }: Props): JSX.Element => (
-  <CardFace {...CardFaceProps} type="Notes">
-    <div className="CardFill" />
-    
-    <div className="CardDetails">
-      <div className="CardName">{name}</div>
+export const NotesCardFace: React.SFC<NotesCardFaceProps> = ({ index, ...CardFaceProps }): JSX.Element => {
+  const { name, notes, traits } = React.useContext(CardContext)
+  const noteFace = notes[index]
 
-      <div className="CardNotesContainer">
-        <div className="CardNotesSeparators">
-          <div className="CardTraits" />
+  return (
+    <CardFace {...CardFaceProps} type="Notes">
+      <CardFill />
+      
+      <div className="CardDetails">
+        <div className="CardName">{name}</div>
+  
+        <div className="CardNotesContainer">
+          <div className="CardNotesSeparators">
+            <div className="CardTraits" />
+          </div>
+  
+          <div className="CardNotes">
+            {noteFace.map(({ name, desc }, index): JSX.Element => (
+              <div key={index} className="CardNote">
+                <div className="CardNoteName">{name}</div>
+                <div className="CardNoteDesc">{desc}</div>
+              </div>
+            ))}
+          </div>
+          
+          <div className="CardTraits">{traits.join(" ")}</div>
         </div>
-
-        <div className="CardNotes">
-          {notes.map(({ name, desc }, index): JSX.Element => (
-            <div key={index} className="CardNote">
-              <div className="CardNoteName">{name}</div>
-              <div className="CardNoteDesc">{desc}</div>
-            </div>
-          ))}
-        </div>
-        
-        <div className="CardTraits">{traits.join(" ")}</div>
       </div>
-    </div>
-  </CardFace>
-)
+    </CardFace>
+  )
+}
 
 
 

@@ -4,15 +4,15 @@ import "./style"
 
 
 
-interface Props {
+interface NavMenuProps {
   children: JSX.Element[] | JSX.Element
-  sub?:     boolean 
+  sub?:     boolean
 }
 
 
 
-export const NavMenu = ({ children, sub }: Props): JSX.Element =>
-  <ul className={`${sub ? "Sub" : ""}NavMenu`}>{children}</ul>
+export const NavMenu: React.SFC<NavMenuProps> = ({ children, sub }): JSX.Element =>
+  <ul className={`NavMenu${sub ? " NavMenu--Sub" : ""}`}>{children}</ul>
 
 
 

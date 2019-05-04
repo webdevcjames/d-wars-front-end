@@ -1,0 +1,38 @@
+t_shadows(blur_r, num)
+  buf = "0 0 " + blur_r + "px #0f0f0f"
+  for $i in 1..num - 1
+    buf += ", 0 0 " + blur_r + "px #0f0f0f"
+  unquote(buf)
+
+.MainHeading
+  position relative
+  
+  margin-bottom -93px
+
+  padding 0
+  
+  color #ef8f1f
+  
+  font-family "Seven Eleven Serif", "Mortal Kombat X", Arial, Helvetica, sans-serif
+  font-size 128px
+  line-height 1.25
+  
+  letter-spacing 15px
+  
+  text-align center
+  
+  text-shadow t_shadows(4, 16)
+  
+  z-index 1
+
+  @media screen and (max-width: 2140px)
+    margin-bottom -71px
+
+    font-size 96px
+  
+    text-shadow t_shadows(3, 16)
+
+  @media screen and (max-width: 1780px)
+    margin-bottom -48px
+
+    font-size 72px

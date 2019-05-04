@@ -8,20 +8,25 @@
   &:first-child
     padding-top 0
   
-  .SubNavMenu &
+  &--Sub
     padding-top 0
     
     height 0
     
     opacity 0
+
+    line-height 0
     
     overflow hidden
     
-    transition height 0.3333s, opacity 0.3333s
+    transition height 0.3333s, opacity 0.3333s, padding-top 0.3333s, line-height 0.3333s
     
-  .open &
-    padding-top 4px
+  &--Open
+    &, &:first-child
+      padding-top 4px
     
     height 52px
     
     opacity 1
+
+    line-height 1

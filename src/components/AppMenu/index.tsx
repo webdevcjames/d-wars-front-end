@@ -1,102 +1,83 @@
 import * as React from "react"
-// import { Component } from "react"
+import { RouteComponentProps, withRouter } from "react-router"
 
 import NavLink from "components/NavLink"
 import NavMenu from "components/NavMenu"
 import NavMenuItem from "components/NavMenuItem"
 
 import TNav from "types/TNav"
+import TReact from "types/TReact"
 
 import "./style"
 
 
 
-interface Props {
+interface AppMenuProps extends RouteComponentProps {
   menuItems: TNav.Link[]
 }
 
-interface State {
-  open: string[]
-}
 
 
+export const AppMenu: React.SFC<AppMenuProps> = ({ history, location, menuItems }): JSX.Element => {
+  const [ open, setOpen ]: TReact.State<string[]> = React.useState([])
 
-export class AppMenu extends React.Component<Props, State> {
+  const isHome = location.pathname === "/"
 
-  public displayName: string
-
-
-
-  public constructor(props: Props) {
-    super(props)
-
-    this.state = {
-      open: []
-    }
-
-    this.displayName = "AppMenu"
+  const openMenu = (link: string): void => {  
+    if (open.includes(link)) setOpen(open.filter((openLink): boolean => openLink !== link))
+    else setOpen([ ...open, link ])
   }
 
-
-
-  public openMenu = (link: string): void => {
-    const { open } = this.state
-
-    if (open.includes(link)) this.setState({ open: open.filter((openLink): boolean => openLink !== link) })
-    else this.setState({ open: [ ...open, link ] })
-  }
-
-
-
-  public renderMenu = (items: TNav.Link[]): JSX.Element[] => {
-    const { open } = this.state
-    
-    return items.map(({ items, link, label }, index): JSX.Element => (
-      <NavMenuItem key={index} isOpen={open.includes(link)}>
+  const renderMenu = (items: TNav.Link[], isOpen?: boolean, sub?: boolean): JSX.Element[] => (
+    items.map(({ items, link, label }, index): JSX.Element => (
+      <NavMenuItem key={index} isOpen={isOpen && sub} sub={sub}>
         <NavLink
           hover
           isOpen={open.includes(link)}
-          onToggle={items ? (): void => this.openMenu(link) : undefined}
+          onToggle={items ? (): void => openMenu(link) : undefined}
+          sub={sub}
           to={link}
         >
           {label}
         </NavLink>
 
-        {items && <NavMenu sub>{this.renderMenu(items)}</NavMenu>}
+        {items && <NavMenu sub>{renderMenu(items, open.includes(link), true)}</NavMenu>}
       </NavMenuItem>
     ))
-  }
+  )
 
-
-
-  public render(): JSX.Element {
-    const { menuItems } = this.props
-
-    return (
-      <div className="AppMenuContainer">
-        <div className="AppMenuHeader">
-          <h1>
-            D-
-            <span style={{ letterSpacing: "-20px", margin: "0 0 0 6px" }}>W</span>
-            <span style={{ margin: "0 6px 0 0" }}>a</span>
-            <span style={{ margin: "0 10px 0 0" }}>r</span>
-            s</h1>
-        </div>
-
-        <div className="AppMenu">
-          <NavMenu>
-            {this.renderMenu(menuItems)}
-          </NavMenu>
-
-          <NavLink onClick={(): void => console.warn("Logging out...")}>
-            Logout
-          </NavLink>
-        </div>
+  return (
+    <div className="AppMenu">
+      <div className="AppMenu__Header">
+        <h1
+          className={`AppMenu__Heading${isHome ? " AppMenu__Heading--Active" : ""}`}
+          onClick={(): boolean | void => !isHome && history.push("/")}
+          title="Dimension Wars"
+        >
+          D-
+          <span style={{ letterSpacing: "-20px", margin: "0 0 0 6px" }}>W</span>
+          <span style={{ margin: "0 6px 0 0" }}>a</span>
+          <span style={{ margin: "0 10px 0 0" }}>r</span>
+          s</h1>
       </div>
-    )
-  }
+
+      <div className="AppMenu__Content">
+        <NavMenu>
+          {renderMenu(menuItems)}
+        </NavMenu>
+
+        <NavLink onClick={(): void => console.warn("Logging out...")}>
+          Logout
+        </NavLink>
+      </div>
+    </div>
+  )
 }
 
 
 
-export default AppMenu
+AppMenu.displayName = "AppMenu"
+
+
+
+export default withRouter(AppMenu)
