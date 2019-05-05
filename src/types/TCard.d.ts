@@ -1,6 +1,8 @@
 import TColor from "types/TColor"
 
 declare namespace TCard {
+  type Side = "Left" | "Right"
+
   type Type =
   undefined
   | "Notes"

@@ -23,12 +23,20 @@
   &__Placer
     transition transform 0.6667s
 
-  &__Toggle
+  & &__Placer, &--Left &__Placer,
+  & &__Toggle, &--Left &__Toggle
+    right auto
+    left 0
+
+  &--Right &__Placer,
+  &--Right &__Toggle
     right 0
+    left auto
+
+  &__Toggle
     bottom 0
 
     display flex
-    justify-content flex-end
 
     padding 94px 7px
 
@@ -45,6 +53,12 @@
 
     &--Hover
       opacity 1
+
+  & &__Toggle, &--Left &__Toggle
+    justify-content flex-end
+
+  &--Right &__Toggle
+    justify-content flex-start
 
   &__ToggleInner
     display flex

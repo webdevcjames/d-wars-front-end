@@ -49,7 +49,7 @@ export const Colosseum: React.SFC<RouteComponentProps> = (): JSX.Element => {
           <CardSet card={kenshi}>
             {cardArray}
           </CardSet>
-          <CardSet card={kenshi}>
+          <CardSet card={kenshi} side="Right">
             {cardArray}
           </CardSet>
         </Battle>
