@@ -17,7 +17,7 @@ interface CardArtProps {
 
 
 export const CardArt: React.SFC<CardArtProps> = ({ art }): JSX.Element => {
-  const { color: { bg } } = React.useContext(CardContext)
+  const { card: { color: { bg } } } = React.useContext(CardContext)
   
   let style: { [property: string]: string }  = { backgroundImage: `url(${art})` }
   if (bg) style = { ...style, backgroundColor: bg }

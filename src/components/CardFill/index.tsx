@@ -13,7 +13,7 @@ interface CardFillProps {
 
 
 export const CardFill: React.SFC<CardFillProps> = ({ hasArt }): JSX.Element => {
-  const { color: { bg } } = React.useContext(CardContext)
+  const { card: { color: { bg } } } = React.useContext(CardContext)
 
   const style = bg
     ? (hasArt

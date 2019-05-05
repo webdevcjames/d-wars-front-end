@@ -20,7 +20,7 @@ interface MainCardFaceProps {
 
 
 export const MainCardFace: React.SFC<MainCardFaceProps> = ({ ...CardFaceProps }): JSX.Element => {
-  const { art, name, stats, moves } = React.useContext(CardContext)
+  const { card: { art, name, stats, moves } } = React.useContext(CardContext)
   
   const renderMove = (moveName: string): JSX.Element => (
     <span

@@ -20,7 +20,7 @@ interface TypesCardFaceProps {
 
 
 export const TypesCardFace: React.SFC<TypesCardFaceProps> = ({ ...CardFaceProps }): JSX.Element => {
-  const { name, moves, resistances } = React.useContext(CardContext)
+  const { card: { name, moves, resistances } } = React.useContext(CardContext)
 
   let maxMoveTypeColLen = 2
   const moveMatrix: ({ type: TCard.MoveType }[])[] = Object.values(moves)

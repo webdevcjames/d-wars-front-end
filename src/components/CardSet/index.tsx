@@ -19,11 +19,16 @@ interface CardSetProps {
 
 
 export const CardSet: React.SFC<CardSetProps> = ({ card, children }): JSX.Element => {
+  const [ hover, setHover ]: TReact.State<boolean> = React.useState(false)
   const [ xTranslation, setXTranslation ]: TReact.State<number> = React.useState(0)
 
   return (
-    <CardContext.Provider value={card}>
-      <div className="CardSet">
+    <CardContext.Provider value={{ card, expanded: !!xTranslation }}>
+      <div
+        className={`CardSet${xTranslation ? " CardSet--Expanded" : ""}${hover ? " CardSet--Hover" : ""}`}
+        onMouseEnter={(): void => { !hover && setHover(true) }}
+        onMouseLeave={(): void => { hover && setHover(false) }}
+      >
         {children.map((child, index): JSX.Element => (
           <div
             key={index}
@@ -37,10 +42,10 @@ export const CardSet: React.SFC<CardSetProps> = ({ card, children }): JSX.Elemen
           </div>
         ))}
         <div
-          className={`CardSet__Toggle${xTranslation ? " CardSet__Toggle--Expanded" : ""}`}
+          className={`CardSet__Toggle${xTranslation ? " CardSet__Toggle--Expanded" : ""}${hover ? " CardSet__Toggle--Hover" : ""}`}
           onClick={(): void => setXTranslation(!xTranslation ? 275 : 0)}
           style={{
-            transform: `translateX(${(70 * (children.length - 1)) + 50 + (xTranslation * children.length)}px)`,
+            transform: `translateX(${(70 * children.length) + (xTranslation * children.length) - (xTranslation ? 25 : 20)}px)`,
             zIndex: children.length * -1
           }}
         >

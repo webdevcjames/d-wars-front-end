@@ -17,7 +17,7 @@ interface CardFaceProps {
 
 
 export const CardFace: React.SFC<CardFaceProps> = ({ children, className, type }): JSX.Element => {
-  const { color: { text, borderSolid, borderGradient } } = React.useContext(CardContext)
+  const { card: { color: { text, borderSolid, borderGradient } } } = React.useContext(CardContext)
 
   let sortedGradientStops, gradient
   if (borderGradient) {

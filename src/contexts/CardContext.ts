@@ -4,7 +4,20 @@ import TCard from "types/TCard"
 
 
 
-export const CardContext = React.createContext({} as TCard.Card)
+const defaultCard: TCard.Card = {
+  name:   "",
+  art:    "",
+  color:  {},
+  stats:  { class: "Melee", health: "" },
+  moves:  { base: [], rage: [], final: [], dFactor: [] },
+  notes:  [],
+  traits: [],
+  resistances: [],
+}
+
+
+
+export const CardContext: React.Context<{ card: TCard.Card; expanded: boolean }> = React.createContext({ card: { ...defaultCard }, expanded: false })
 
 
 

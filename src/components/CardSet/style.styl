@@ -1,7 +1,7 @@
 .CardSet
   position relative
 
-  flex 1 0 auto
+  flex 1 1 auto
 
   width 100%
   height 600px
@@ -9,6 +9,11 @@
   overflow hidden
 
   z-index 10
+
+  transition flex 0.6667s
+
+  &--Expanded
+    flex 1 0 auto
 
   &__Placer, &__Toggle
     position absolute
@@ -23,20 +28,46 @@
     bottom 0
 
     display flex
-
-    align-items center
     justify-content flex-end
+
+    padding 94px 7px
 
     width 320px
 
-    transition width 0.6667s, transform 0.6667s
+    opacity 0
+
+    transition width 0.6667s, opacity 0.3333s, transform 0.6667s
+
+    cursor pointer
 
     &--Expanded
       width 50px
 
-    &__ToggleInner
-      flex 0 0 auto
+    &--Hover
+      opacity 1
 
-      width 50px
-    
-      background-color #000000
+  &__ToggleInner
+    display flex
+
+    align-items center
+    justify-content center
+
+    flex 0 0 auto
+
+    width 36px
+  
+    background-color #1f1f1f
+
+    border-radius 14px
+
+    color #0f0f0f
+
+    filter drop-shadow(4px 4px 4px)
+  
+  &__ToggleIcon
+    color #efefef
+
+    transition transform 0.6667s
+  
+  &__Toggle--Expanded &__ToggleIcon
+    transform scale(-1, 1)

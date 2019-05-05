@@ -17,7 +17,7 @@ interface NotesCardFaceProps {
 
 
 export const NotesCardFace: React.SFC<NotesCardFaceProps> = ({ index, ...CardFaceProps }): JSX.Element => {
-  const { name, notes, traits } = React.useContext(CardContext)
+  const { card: { name, notes, traits } } = React.useContext(CardContext)
   const noteFace = notes[index]
 
   return (

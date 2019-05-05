@@ -17,7 +17,7 @@ interface DFactorCardFaceProps {
 
 
 export const DFactorCardFace: React.SFC<DFactorCardFaceProps> = ({ index , ...CardFaceProps }): JSX.Element => {
-  const { name, moves: { dFactor } } = React.useContext(CardContext)
+  const { card: { name, moves: { dFactor } } } = React.useContext(CardContext)
   const { title, dFactorType, desc } = dFactor[index]
 
   return (

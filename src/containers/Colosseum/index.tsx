@@ -49,6 +49,9 @@ export const Colosseum: React.SFC<RouteComponentProps> = (): JSX.Element => {
           <CardSet card={kenshi}>
             {cardArray}
           </CardSet>
+          <CardSet card={kenshi}>
+            {cardArray}
+          </CardSet>
         </Battle>
       </BattleStage>
     </React.Fragment>
