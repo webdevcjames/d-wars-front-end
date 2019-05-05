@@ -34,29 +34,31 @@ export const CardSet: React.SFC<CardSetProps> = ({ card, children, side }): JSX.
         onMouseEnter={(): void => { !hover && setHover(true) }}
         onMouseLeave={(): void => { hover && setHover(false) }}
       >
-        {children.map((child, index): JSX.Element => (
+        <div className="CardSet__Inner">
+          {children.map((child, index): JSX.Element => (
+            <div
+              key={index}
+              className="CardSet__Placer"
+              style={{
+                transform: `translateX(${((70 * index) + (xTranslation * index)) * xTranslationSign}px)`,
+                zIndex: index * -1
+              }}
+            >
+              {child}
+            </div>
+          ))}
           <div
-            key={index}
-            className="CardSet__Placer"
+            className={`CardSet__Toggle${xTranslation ? " CardSet__Toggle--Expanded" : ""}${hover ? " CardSet__Toggle--Hover" : ""}`}
+            onClick={(): void => setXTranslation(!xTranslation ? 275 : 0)}
             style={{
-              transform: `translateX(${((70 * index) + (xTranslation * index)) * xTranslationSign}px)`,
-              zIndex: index * -1
+              transform: `translateX(${((70 * children.length) + (xTranslation * children.length) - (xTranslation ? 25 : 20)) * xTranslationSign}px)`,
+              zIndex: children.length * -1
             }}
           >
-            {child}
-          </div>
-        ))}
-        <div
-          className={`CardSet__Toggle${xTranslation ? " CardSet__Toggle--Expanded" : ""}${hover ? " CardSet__Toggle--Hover" : ""}`}
-          onClick={(): void => setXTranslation(!xTranslation ? 275 : 0)}
-          style={{
-            transform: `translateX(${((70 * children.length) + (xTranslation * children.length) - (xTranslation ? 25 : 20)) * xTranslationSign}px)`,
-            zIndex: children.length * -1
-          }}
-        >
-          <div className="CardSet__ToggleInner">
-            {!isRight && <ChevronDoubleRightIcon className="CardSet__ToggleIcon" />}
-            {isRight && <ChevronDoubleLeftIcon className="CardSet__ToggleIcon" />}
+            <div className="CardSet__ToggleInner">
+              {!isRight && <ChevronDoubleRightIcon className="CardSet__ToggleIcon" size={28} />}
+              {isRight && <ChevronDoubleLeftIcon className="CardSet__ToggleIcon" size={28} />}
+            </div>
           </div>
         </div>
       </div>

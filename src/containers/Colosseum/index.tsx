@@ -5,6 +5,7 @@ import chunk from "lodash/chunk"
 
 import Battle from "components/Battle"
 import BattleStage from "components/BattleStage"
+import Versus from "components/Versus"
 
 import Card from "components/Card"
 import CardSet from "components/CardSet"
@@ -49,6 +50,7 @@ export const Colosseum: React.SFC<RouteComponentProps> = (): JSX.Element => {
           <CardSet card={kenshi}>
             {cardArray}
           </CardSet>
+          <Versus />
           <CardSet card={kenshi} side="Right">
             {cardArray}
           </CardSet>

@@ -1,0 +1,5 @@
+t_shadows(blur_r, num)
+  buf = "0 0 " + blur_r + "px #0f0f0f"
+  for $i in 1..num - 1
+    buf += ", 0 0 " + blur_r + "px #0f0f0f"
+  unquote(buf)
