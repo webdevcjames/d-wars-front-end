@@ -1,5 +1,9 @@
 import * as React from "react"
 
+import BattleContext from "contexts/BattleContext"
+
+import TReact from "types/TReact"
+
 import "./style"
 
 
@@ -10,8 +14,15 @@ interface BattleProps {
 
 
 
-export const Battle: React.SFC<BattleProps> = ({ children }): JSX.Element =>
-  <div className="Battle">{children}</div>
+export const Battle: React.SFC<BattleProps> = ({ children }): JSX.Element => {
+  const [ activeIndex, setActiveIndex ]: TReact.State<number | undefined> = React.useState(undefined)
+  return (
+    <BattleContext.Provider value={{ activeIndex, setActiveIndex }}>
+      <div className="Battle">{children}</div>
+    </BattleContext.Provider>
+  )
+}
+
 
 
 

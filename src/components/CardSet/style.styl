@@ -4,22 +4,12 @@
   display flex
 
   align-items center
-  flex 1 1 auto
-
-  width calc(100% - 128px) // not happy with this solution
-  // width 100%
+  flex 1 1 100%
 
   transition flex 0.6667s ease-in-out
-
-  &--Expanded
-    flex 1 0 auto
-
-  // Ideal styling
-  // &--Expanded
-  //   flex 1 1 auto
-  //
-  // &--NotExpanded
-  //   flex 0 1 0
+  
+  &--NotExpanded
+    flex 0 1 0
 
   &__Inner
     position relative

@@ -1,5 +1,6 @@
 import * as React from "react"
 
+import BattleContext from "contexts/BattleContext"
 import CardContext from "contexts/CardContext"
 
 import ChevronDoubleLeftIcon from "mdi-react/ChevronDoubleLeftIcon"
@@ -15,22 +16,33 @@ import "./style"
 interface CardSetProps {
   card:     TCard.Card
   children: JSX.Element[]
+  index:    number
   side?:    TCard.Side
 }
 
 
 
-export const CardSet: React.SFC<CardSetProps> = ({ card, children, side }): JSX.Element => {
+export const CardSet: React.SFC<CardSetProps> = ({ card, children, index, side }): JSX.Element => {
   const [ hover, setHover ]: TReact.State<boolean> = React.useState(false)
   const [ xTranslation, setXTranslation ]: TReact.State<number> = React.useState(0)
+  const { activeIndex, setActiveIndex } = React.useContext(BattleContext)
 
-  const isRight = side === "Right"
+  const expanded = activeIndex === index
+  const isRight  = side === "Right"
   const xTranslationSign = isRight ? -1 : 1
 
+  const setExpandedClasses = (className: string): string => typeof activeIndex === "number"
+    ? (
+      expanded
+        ? ` ${className}--Expanded`
+        : ` ${className}--NotExpanded`
+    )
+    : ""
+
   return (
-    <CardContext.Provider value={{ card, expanded: !!xTranslation }}>
+    <CardContext.Provider value={{ card, expanded }}>
       <div
-        className={`CardSet${xTranslation ? " CardSet--Expanded" : ""}${hover ? " CardSet--Hover" : ""}${side ? ` CardSet--${side}` : ""}`}
+        className={`CardSet${setExpandedClasses("CardSet")}${hover ? " CardSet--Hover" : ""}${side ? ` CardSet--${side}` : ""}`}
         onMouseEnter={(): void => { !hover && setHover(true) }}
         onMouseLeave={(): void => { hover && setHover(false) }}
       >
@@ -48,8 +60,11 @@ export const CardSet: React.SFC<CardSetProps> = ({ card, children, side }): JSX.
             </div>
           ))}
           <div
-            className={`CardSet__Toggle${xTranslation ? " CardSet__Toggle--Expanded" : ""}${hover ? " CardSet__Toggle--Hover" : ""}`}
-            onClick={(): void => setXTranslation(!xTranslation ? 275 : 0)}
+            className={`CardSet__Toggle${setExpandedClasses("CardSet__Toggle")}${hover ? " CardSet__Toggle--Hover" : ""}`}
+            onClick={(): void => {
+              setXTranslation(!xTranslation ? 275 : 0)
+              setActiveIndex(expanded ? undefined : index)
+            }}
             style={{
               transform: `translateX(${((70 * children.length) + (xTranslation * children.length) - (xTranslation ? 25 : 20)) * xTranslationSign}px)`,
               zIndex: children.length * -1

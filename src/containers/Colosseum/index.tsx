@@ -47,11 +47,11 @@ export const Colosseum: React.SFC<RouteComponentProps> = (): JSX.Element => {
     <React.Fragment>
       <BattleStage stage={stages["kahns_colosseum"]}>
         <Battle>
-          <CardSet card={kenshi}>
+          <CardSet card={kenshi} index={0}>
             {cardArray}
           </CardSet>
           <Versus />
-          <CardSet card={kenshi} side="Right">
+          <CardSet card={kenshi} index={1} side="Right">
             {cardArray}
           </CardSet>
         </Battle>
