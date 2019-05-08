@@ -1,16 +1,51 @@
 version: "3.7"
 services:
-  node:
+  client:
     build:
-      context: .
+      context: ./client
       dockerfile: Dockerfile
     environment:
       - NODE_ENV=development
       - PORT=3000
-    volumes:
-      - .:/app:rw
-      - /app/node_modules
     ports:
       - "3000:3000"
+    volumes:
+      - ./client:/client:rw
+      - /client/node_modules
+    links:
+      - api
+    networks:
+      - dwarsnetwork
     command: tail -f /dev/null
     # command: "yarn start"
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=development
+      - PORT=9000
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./api:/api:rw
+      - /api/node_modules
+    depends_on:
+      - mongodb
+    networks:
+      - dwarsnetwork
+    command: yarn start
+  mongodb:
+        image: mongo
+        restart: always
+        container_name: mongodb
+        volumes:
+            - ./data-node:/data/db
+        ports:
+            - 27017:27017
+        command: mongod --noauth --smallfiles
+        networks:
+            - dwarsnetwork
+networks:
+    dwarsnetwork:
+        driver: bridge
