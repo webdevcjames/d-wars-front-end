@@ -12,6 +12,8 @@ import PageNotFound from "containers/PageNotFound"
 import { menuItems } from "constants/AppData"
 import { users } from "constants/MockData"
 
+import { callAPI } from "helpers/app"
+
 import "./style"
 
 
@@ -23,6 +25,15 @@ export const App: React.SFC = (): JSX.Element => (
 
       <div className="App__Content">
         <Header>
+          <a
+            href="#"
+            onClick={(e): void => {
+              e.preventDefault()
+              console.warn(callAPI("http://localhost:9000/testAPI"))
+            }}
+          >
+            API Test
+          </a>
           <UserDetails user={users["korill_venn"]} />
         </Header>
 
