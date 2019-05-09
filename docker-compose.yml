@@ -31,21 +31,20 @@ services:
       - ./api:/api:rw
       - /api/node_modules
     depends_on:
-      - mongodb
+      - db
     networks:
       - dwarsnetwork
     command: yarn start
-  mongodb:
-        image: mongo
-        restart: always
-        container_name: mongodb
-        volumes:
-            - ./data-node:/data/db
-        ports:
-            - 27017:27017
-        command: mongod --noauth --smallfiles
-        networks:
-            - dwarsnetwork
+  db:
+    image: mongo
+    volumes:
+      - ./data-node:/data/db
+    ports:
+      - 27017:27017
+    command: mongod --noauth --smallfiles
+    command: tail -f /dev/null
+    networks:
+      - dwarsnetwork
 networks:
-    dwarsnetwork:
-        driver: bridge
+  dwarsnetwork:
+    driver: bridge

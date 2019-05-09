@@ -5,7 +5,7 @@ import "./style"
 
 
 interface HeaderProps {
-  children:   JSX.Element[] | JSX.Element
+  children:   (JSX.Element | string)[] | JSX.Element[] | JSX.Element | string
   className?: string
   id?: 		    string
 }

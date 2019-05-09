@@ -21,25 +21,33 @@ FOLDER_NAME="$(rev $FOLDER_NAME)"
 # echo $DOCKER_IMAGE
 # echo $DOCKER_CONTAINER
 
-DOCKER_SERVICE="client"
-DOCKER_CONTAINER="${FOLDER_NAME}_${DOCKER_SERVICE}_1"
+declare -a DOCKER_SERVICES=("client" "api" "db")
+DOCKER_CONTAINERS=""
+for i in "${DOCKER_SERVICES[@]}"
+do
+  DOCKER_CONTAINERS="${FOLDER_NAME}_${i}_1 ${DOCKER_CONTAINERS}"
+done
 
-DOCKER_CMD="echo 'Enter a command to run...'"
-
-if [[ "$1" = "up" ]] ; then
-  DOCKER_CMD="docker-compose up -d"
-  echo "Up-ing container '$DOCKER_CONTAINER'..."
+if [[ "$1" = "build" ]] ; then
+  echo "Building container(s) '$DOCKER_CONTAINERS'..."
+  exec docker-compose build
+elif [[ "$1" = "up" ]] ; then
+  echo "Up-ing container(s) '$DOCKER_CONTAINERS'..."
+  exec docker-compose up -d
+elif [[ "$1" = "build-up" ]] ; then
+  echo "Building and up-ing container(s) '$DOCKER_CONTAINERS'..."
+  exec docker-compose up -d --build
 elif [[ "$1" = "stop" ]] ; then
-  DOCKER_CMD="docker stop $DOCKER_CONTAINER"
-  echo "Stopping container '$DOCKER_CONTAINER'..."
+  echo "Stopping container(s) '$DOCKER_CONTAINERS'..."
+  exec docker stop $DOCKER_CONTAINERS
 elif [[ "$1" = "rm" ]] ; then
-  DOCKER_CMD="docker rm $DOCKER_CONTAINER"
-  echo "Removing container '$DOCKER_CONTAINER'..."
+  echo "Removing container(s) '$DOCKER_CONTAINERS'..."
+  exec docker rm $DOCKER_CONTAINERS
 elif [[ "$1" = "yarn" ]] ; then
-  DOCKER_CMD="winpty docker exec -it $DOCKER_CONTAINER ${@}"
-  echo "Running ${@} in container '$DOCKER_CONTAINER'..." 
+  echo "Running ${@} in container(s) '${FOLDER_NAME}_${DOCKER_SERVICES[0]}_1'..." 
+  exec winpty docker exec -it ${FOLDER_NAME}_${DOCKER_SERVICES[0]}_1 ${@}
+else
+  echo 'Enter a command to run...'
 fi
-
-exec $DOCKER_CMD
 
 exit 0
