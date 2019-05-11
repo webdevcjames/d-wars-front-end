@@ -2,6 +2,8 @@
 designs/
 
 
+# DB
+data-node/
 
 # Logs
 logs

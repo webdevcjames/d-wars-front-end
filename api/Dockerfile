@@ -4,6 +4,6 @@ WORKDIR /api
 
 COPY package.json yarn.lock ./
 
-EXPOSE 80
+EXPOSE 8080
 
 RUN yarn

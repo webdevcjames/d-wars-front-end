@@ -30,21 +30,38 @@ services:
     volumes:
       - ./api:/api:rw
       - /api/node_modules
-    depends_on:
+    links:
       - db
     networks:
       - dwarsnetwork
-    command: yarn start
-  db:
-    image: mongo
-    volumes:
-      - ./data-node:/data/db
-    ports:
-      - 27017:27017
-    command: mongod --noauth --smallfiles
     command: tail -f /dev/null
+    # command: "yarn start"
+  db:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      - DEBUG=false
+      - POSTGRES_USER=admin
+      - POSTGRES_PASS=admin
+      - POSTGRES_DB=database_development
+      - DB_TEMPLATE=
+      - DB_EXTENSION=
+      - REPLICATION_MODE=
+      - REPLICATION_USER=
+      - REPLICATION_PASS=
+      - REPLICATION_SSLMODE=
+    volumes:
+      - /var/lib/postgresql:/var/lib/postgresql
     networks:
       - dwarsnetwork
+  db_gui:
+    image: dpage/pgadmin4
+    ports:
+      - "80:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=user@domain.com
+      - PGADMIN_DEFAULT_PASSWORD=SuperSecret
 networks:
   dwarsnetwork:
     driver: bridge

@@ -21,10 +21,12 @@ FOLDER_NAME="$(rev $FOLDER_NAME)"
 # echo $DOCKER_IMAGE
 # echo $DOCKER_CONTAINER
 
-declare -a DOCKER_SERVICES=("client" "api" "db")
+declare -a DOCKER_SERVICES=("client" "api" "db" "db_gui")
+DOCKER_IMAGES=""
 DOCKER_CONTAINERS=""
 for i in "${DOCKER_SERVICES[@]}"
 do
+  DOCKER_IMAGES="${FOLDER_NAME}_${i} ${DOCKER_IMAGES}"
   DOCKER_CONTAINERS="${FOLDER_NAME}_${i}_1 ${DOCKER_CONTAINERS}"
 done
 
@@ -43,6 +45,9 @@ elif [[ "$1" = "stop" ]] ; then
 elif [[ "$1" = "rm" ]] ; then
   echo "Removing container(s) '$DOCKER_CONTAINERS'..."
   exec docker rm $DOCKER_CONTAINERS
+elif [[ "$1" = "im-rm" ]] ; then
+  echo "Removing images(s) '$DOCKER_IMAGES'..."
+  exec docker image rm $DOCKER_IMAGES
 elif [[ "$1" = "yarn" ]] ; then
   echo "Running ${@} in container(s) '${FOLDER_NAME}_${DOCKER_SERVICES[0]}_1'..." 
   exec winpty docker exec -it ${FOLDER_NAME}_${DOCKER_SERVICES[0]}_1 ${@}
